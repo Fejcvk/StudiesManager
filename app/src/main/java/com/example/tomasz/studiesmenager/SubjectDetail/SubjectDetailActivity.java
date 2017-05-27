@@ -39,9 +39,12 @@ public class SubjectDetailActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
         Intent intent = getIntent();
+
         subjectID = intent.getLongExtra("Subject", 1);
         currentSubject = Subject.findById(Subject.class, subjectID);
+
         if (currentSubject == null) return;
         setTitle(currentSubject.Name);
 

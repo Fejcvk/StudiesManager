@@ -1,5 +1,6 @@
-package com.example.tomasz.studiesmenager;
+package com.example.tomasz.studiesmenager.SubjectsListCardView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -8,12 +9,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.tomasz.studiesmenager.Model.Subject;
+import com.example.tomasz.studiesmenager.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class SubjectsActivity extends AppCompatActivity {
@@ -37,6 +36,7 @@ public class SubjectsActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
 
 
         mRecyclerView = (RecyclerView) findViewById(R.id.subject_recycler_view);

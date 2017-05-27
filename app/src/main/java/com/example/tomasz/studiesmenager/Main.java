@@ -1,21 +1,19 @@
 package com.example.tomasz.studiesmenager;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.tomasz.studiesmenager.Model.Attendence;
 import com.example.tomasz.studiesmenager.Model.Subject;
 import com.example.tomasz.studiesmenager.Model.Class;
+import com.example.tomasz.studiesmenager.SubjectsListCardView.SubjectsActivity;
 
 import java.util.Date;
 
@@ -28,8 +26,6 @@ public class Main extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -46,6 +42,12 @@ public class Main extends AppCompatActivity
         s.StartDate = new Date(1990, 12, 1);
         s.save();
 
+        Subject s2 = new Subject();
+        s2.Name = "Algebra2";
+        s2.EndDate = new Date(1999, 12, 1);
+        s2.StartDate = new Date(1999, 12, 1);
+        s2.save();
+
         Class c = new Class();
         c.Type = Class.ClassType.Lab;
         c.EndHour = new Date(1996, 12, 10);
@@ -55,6 +57,16 @@ public class Main extends AppCompatActivity
         c.MinPassScore = 50;
         c.Subject = s;
         c.save();
+
+        Class c2 = new Class();
+        c2.Type = Class.ClassType.Lab;
+        c2.EndHour = new Date(1999, 12, 10);
+        c2.StartHour = new Date(1999, 12, 10);
+        c2.FreqInWeeks = 1;
+        c2.MaxScore = 100;
+        c2.MinPassScore = 50;
+        c2.Subject = s2;
+        c2.save();
 
         Class d = new Class();
         d.Type = Class.ClassType.Lecture;
@@ -78,9 +90,18 @@ public class Main extends AppCompatActivity
 
         for (int i = 0; i < 20; i++) {
             Attendence a = new Attendence();
+            a.Class = c2;
+            a.PointsEarned = 200;
+            a.Date = new Date(0, 20, 9, d.StartHour.getHours()+i, d.StartHour.getMinutes()+i);
+            a.WasPresent = false;
+            a.save();
+        }
+
+        for (int i = 0; i < 20; i++) {
+            Attendence a = new Attendence();
             a.Class = d;
             a.PointsEarned = 200;
-            a.Date = new Date(0, 20, 9, d.StartHour.getHours(), d.StartHour.getMinutes());
+            a.Date = new Date(0, 20, 9, d.StartHour.getHours()+i, d.StartHour.getMinutes()+i);
             a.WasPresent = false;
             a.save();
         }
@@ -88,7 +109,7 @@ public class Main extends AppCompatActivity
             Attendence a = new Attendence();
             a.Class = c;
             a.PointsEarned = 200;
-            a.Date = new Date(120, 12, 1, c.StartHour.getHours(), c.StartHour.getMinutes());
+            a.Date = new Date(120, 12, 1, c.StartHour.getHours()+i, c.StartHour.getMinutes()+i);
             a.WasPresent = false;
             a.save();
         }
@@ -96,7 +117,7 @@ public class Main extends AppCompatActivity
             Attendence a = new Attendence();
             a.Class = e;
             a.PointsEarned = 200;
-            a.Date = new Date(90, 12, 1, e.StartHour.getHours(), e.StartHour.getMinutes());
+            a.Date = new Date(90, 12, 1, e.StartHour.getHours()+i, e.StartHour.getMinutes()+i);
             a.WasPresent = false;
             a.save();
         }
@@ -132,15 +153,20 @@ public class Main extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        Intent intent;
         if (id == R.id.Subjects) {
-            // Handle the camera action
+            intent = new Intent(this, SubjectsActivity.class);
         }
         else if (id == R.id.Schedule) {
+            intent = new Intent(this, SubjectsActivity.class);
         }
         else if (id == R.id.Stats){
+            intent = new Intent(this, SubjectsActivity.class);
         }
-        else if (id == R.id.AddSubject){
+        else{// if (id == R.id.AddSubject){
+            intent = new Intent(this, SubjectsActivity.class);
         }
+        startActivity(intent);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

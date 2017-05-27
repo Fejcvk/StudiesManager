@@ -1,10 +1,13 @@
 package com.example.tomasz.studiesmenager.SubjectDetail;
 
+import android.support.transition.TransitionManager;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.tomasz.studiesmenager.Model.Attendence;
@@ -19,9 +22,13 @@ import java.util.List;
 public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AttendenceViewHolder>{
 
     private List<Attendence> attendences;
-    public RVAdapter(List<Attendence> pastAttendences)
+    private int mExpandedPosition = -1;
+    private RecyclerView recyclerView;
+    public RVAdapter(List<Attendence> pastAttendences, RecyclerView rv)
     {
         attendences = pastAttendences;
+        recyclerView = rv;
+
     }
     @Override
     public AttendenceViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -31,7 +38,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AttendenceViewHold
     }
 
     @Override
-    public void onBindViewHolder(AttendenceViewHolder holder, int position) {
+    public void onBindViewHolder(final AttendenceViewHolder holder, int position) {
 
         Attendence a = attendences.get(position);
         if (a == null) return;
@@ -55,7 +62,17 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AttendenceViewHold
                 color = 0xffbeeffa;
                 break;
         }
-
+        final boolean isExpanded = position == mExpandedPosition;
+        holder.details.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
+        holder.itemView.setActivated(isExpanded);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mExpandedPosition = isExpanded ? -1 : holder.getAdapterPosition();
+                TransitionManager.beginDelayedTransition(recyclerView);
+                notifyDataSetChanged();
+            }
+        });
         holder.cv.setBackgroundColor(color);
         holder.classType.setText(classType);
         holder.date.setText(a.Date.toString());
@@ -70,12 +87,14 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AttendenceViewHold
         CardView cv;
         TextView classType;
         TextView date;
+        LinearLayout details;
 
         AttendenceViewHolder(View itemView) {
             super(itemView);
             cv = (CardView)itemView.findViewById(R.id.card_view_template);
             classType = (TextView)itemView.findViewById(R.id.card_subject_type_name);
             date = (TextView)itemView.findViewById(R.id.card_subject_date);
+            details = (LinearLayout) itemView.findViewById(R.id.details);
         }
     }
     @Override

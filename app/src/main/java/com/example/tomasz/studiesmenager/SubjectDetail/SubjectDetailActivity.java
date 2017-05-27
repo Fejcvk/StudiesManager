@@ -58,17 +58,12 @@ public class SubjectDetailActivity extends AppCompatActivity {
         }
         pastAttendences = tmp;
 
-        for (Attendence z:
-             pastAttendences) {
-            Log.i("TAG", z.toString());
-        }
-
         RecyclerView rv = (RecyclerView)findViewById(R.id.CardsContainer);
 
         LinearLayoutManager llm = new LinearLayoutManager(getApplicationContext());
         rv.setLayoutManager(llm);
 
-        RVAdapter rva = new RVAdapter(pastAttendences);
+        RVAdapter rva = new RVAdapter(pastAttendences, rv);
         rv.setAdapter(rva);
     }
 

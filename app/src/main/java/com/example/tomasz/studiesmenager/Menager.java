@@ -31,18 +31,25 @@ public class Menager extends AppCompatActivity {
         c.Subject = s;
         c.save();
 
+        Attendence a = new Attendence();
+        a.WasPresent = true;
+        a.PointsEarned = 0;
+        a.Class = c;
+        a.Date = new Date(1996,12,10);
+        a.save();
+
         //Push intent i alarmmanager
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
         Intent notificationIntent = new Intent("android.media.action.DISPLAY_NOTIFICATION");
-        notificationIntent.putExtra("Subject","Operating systems 2 - Lab");
-        notificationIntent.putExtra("Date", "22/02/2015");
+        notificationIntent.putExtra("Present",a.WasPresent);
+        notificationIntent.putExtra("Date",a.Date.toString());
+        notificationIntent.putExtra("ID",a.getId());
         notificationIntent.addCategory("android.intent.category.DEFAULT");
 
         PendingIntent broadcast = PendingIntent.getBroadcast(this, 100, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.SECOND, 1);
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), broadcast);
-
     }
 }

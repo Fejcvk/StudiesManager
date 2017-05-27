@@ -13,28 +13,36 @@ import android.support.v4.app.TaskStackBuilder;
 public class PushReceiver extends BroadcastReceiver{
     @Override
     public void onReceive(Context context, Intent intent) {
+
         Intent notificationIntent = new Intent(context, DismissActivity.class);
+
+        Intent yesReceive = new Intent();
+        yesReceive.putExtra("ID",intent.getLongExtra("ID",0));
+        yesReceive.setAction(AppConstant.YES_ACTION);
+        PendingIntent pendingIntentYes = PendingIntent.getBroadcast(context, 12345, yesReceive, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        Intent yesReceive2 = new Intent();
+        yesReceive2.setAction(AppConstant.STOP_ACTION);
+        yesReceive.putExtra("ID",intent.getLongExtra("ID",0));
+        PendingIntent pendingIntentYes2 = PendingIntent.getBroadcast(context, 12345, yesReceive2, PendingIntent.FLAG_UPDATE_CURRENT);
 
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
         stackBuilder.addParentStack(DismissActivity.class);
         stackBuilder.addNextIntent(notificationIntent);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent pendingIntent = stackBuilder.getPendingIntent(1, PendingIntent.FLAG_CANCEL_CURRENT);
-        PendingIntent dismissIntent = DismissActivity.getDismissIntent(1, context);
+        PendingIntent pendingIntent = stackBuilder.getPendingIntent((int)intent.getLongExtra("ID",0), PendingIntent.FLAG_UPDATE_CURRENT);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
 
         Notification notification = builder.setContentTitle("Student Manager")
-                .setContentText(intent.getExtras().getString("Subject") + " " + intent.getExtras().getString("Date"))
+                .setContentText(intent.getExtras().getBoolean("Present") + " " + intent.getExtras().getString("Date"))
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setVisibility(Notification.VISIBILITY_PUBLIC)
-                .addAction(R.drawable.tick,"Obecny",pendingIntent)
-                .addAction(R.drawable.cross,"Nieobecny",dismissIntent)
+                .addAction(R.drawable.tick,"Obecny",pendingIntentYes)
+                .addAction(R.drawable.cross,"Nieobecny",pendingIntentYes2)
                 .setFullScreenIntent(pendingIntent,false)
                 .setColor(Color.WHITE)
                 .build();
-        notification.flags = Notification.FLAG_INSISTENT | Notification.FLAG_AUTO_CANCEL;
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(1, notification);
+        notificationManager.notify((int)intent.getLongExtra("ID",0), notification);
     }
 }

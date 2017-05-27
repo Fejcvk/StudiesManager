@@ -17,6 +17,12 @@
         <meta-data android:name="QUERY_LOG" android:value="true" />
         <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="com.example.tomasz.studiesmenager" />
         <activity android:name=".DismissActivity" />
+        <receiver android:name=".NotificationReceiver">
+            <intent-filter>
+                <action android:name="YES_ACTION"/>
+                <action android:name="STOP_ACTION"/>
+            </intent-filter>
+        </receiver>
         <receiver
             android:name=".PushReceiver"
             android:theme="@android:style/Theme.NoDisplay">

@@ -1,8 +1,11 @@
 package com.example.tomasz.studiesmenager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
+import com.example.tomasz.studiesmenager.addView.addViewActivity;
 import java.util.Date;
 
 public class Menager extends AppCompatActivity {
@@ -25,8 +28,10 @@ public class Menager extends AppCompatActivity {
         c.MinPassScore = 50;
         c.Subject = s;
         c.save();
-
-
-
     }
+    public void sendMessage(View view) {
+        Intent intent = new Intent(this, addViewActivity.class);
+        startActivity(intent);
+    }
+
 }

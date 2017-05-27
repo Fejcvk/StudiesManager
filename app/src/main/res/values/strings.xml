@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">Studies Menager</string>
+    <string name="subjectHint">Nazwa przedmiotu</string>
+    <string name="highScoreHint">Maksymalna ilość punktów do uzyskania</string>
+    <string name="labButton">LAB</string>
+    <string name="tutButton">ĆWI</string>
+    <string name="lecButton">WYK</string>
+    <string name="title_activity_add_form">AddFormActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="passScoreHint">Liczba punktów potrzeba do zaliczenia</string>
+    <string name="startHourHint">Godzina rozpoczęcia</string>
+    <string name="endHourHint">Godzina końca</string>
+    <string name="addClasses">Dodaj przedmiot</string>
+    <string name="pushLabel">Powiadomienia push</string>
+    <string name="classStartDate">Podaj date rozpoczęcia przedmiotu</string>
+    <string name="onceAWeek">Raz w tygodniu</string>
+    <string name="twiceAWeek">Raz na dwa tygodnie</string>
 </resources>

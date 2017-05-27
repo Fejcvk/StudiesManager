@@ -7,7 +7,18 @@ import com.orm.SugarRecord;
  */
 
 public class Subject extends SugarRecord<Subject> {
-    public String Name;
+    private String Name;
 
     public Subject(){}
+    public Subject(String _name){
+        Name = _name;
+    }
+
+    public  void setName(String _name){
+        Name = _name;
+    }
+
+    public String getName(){
+        return Name;
+    }
 }

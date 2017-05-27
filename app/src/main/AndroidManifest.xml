@@ -17,7 +17,7 @@
             android:value="manager.db" />
         <meta-data
             android:name="VERSION"
-            android:value="2" />
+            android:value="5" />
         <meta-data
             android:name="QUERY_LOG"
             android:value="true" />
@@ -31,6 +31,15 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".SubjectDetail.SubjectDetailActivity"
+            android:label="@string/title_activity_subject_detail"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".SubjectsActivity"
+            android:label="@string/title_activity_subjects"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
 

@@ -1,7 +1,9 @@
 package com.example.tomasz.studiesmenager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 import java.util.Date;
 
@@ -28,5 +30,10 @@ public class Menager extends AppCompatActivity {
 
 
 
+    }
+
+    public void openScheduleView(View view) {
+        Intent intent = new Intent(this, ScheduleViewActivity.class);
+        startActivity(intent);
     }
 }

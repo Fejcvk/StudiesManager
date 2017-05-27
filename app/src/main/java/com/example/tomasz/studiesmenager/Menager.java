@@ -3,6 +3,7 @@ package com.example.tomasz.studiesmenager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 import com.example.tomasz.studiesmenager.Model.Attendence;
 import com.example.tomasz.studiesmenager.Model.Class;
@@ -54,7 +55,7 @@ public class Menager extends AppCompatActivity {
         e.Subject = s;
         e.save();
 
-        for(int i = 0; i<20; i++ ) {
+        for (int i = 0; i < 20; i++) {
             Attendence a = new Attendence();
             a.Class = d;
             a.PointsEarned = 200;
@@ -62,7 +63,7 @@ public class Menager extends AppCompatActivity {
             a.WasPresent = false;
             a.save();
         }
-        for(int i = 0; i<20; i++ ) {
+        for (int i = 0; i < 20; i++) {
             Attendence a = new Attendence();
             a.Class = c;
             a.PointsEarned = 200;
@@ -70,7 +71,7 @@ public class Menager extends AppCompatActivity {
             a.WasPresent = false;
             a.save();
         }
-        for(int i = 0; i<20; i++ ) {
+        for (int i = 0; i < 20; i++) {
             Attendence a = new Attendence();
             a.Class = e;
             a.PointsEarned = 200;
@@ -78,10 +79,10 @@ public class Menager extends AppCompatActivity {
             a.WasPresent = false;
             a.save();
         }
+    }
 
-        Intent i = new Intent(this, SubjectDetailActivity.class);
-        i.putExtra("Subject", s.getId());
-        startActivity(i);
-
+    public void sendMessage(View view) {
+        Intent intent = new Intent(this, SubjectDetailActivity.class);
+        startActivity(intent);
     }
 }

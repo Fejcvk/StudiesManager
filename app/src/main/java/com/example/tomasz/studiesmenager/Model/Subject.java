@@ -13,4 +13,8 @@ public class Subject extends SugarRecord<Subject> {
     public Date StartDate;
     public Date EndDate;
     public Subject(){}
+
+    public Subject(String _name){
+        Name = _name;
+    }
 }

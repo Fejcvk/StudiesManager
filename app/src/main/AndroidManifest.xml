@@ -37,7 +37,7 @@
             android:label="@string/title_activity_subject_detail"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
-            android:name=".SubjectsActivity"
+            android:name=".SubjectsListCardView.SubjectsActivity"
             android:label="@string/title_activity_subjects"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>

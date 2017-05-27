@@ -25,7 +25,7 @@
             android:name="DOMAIN_PACKAGE_NAME"
             android:value="com.example.tomasz.studiesmenager" />
 
-        <activity android:name=".Menager">
+        <activity android:name=".Main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

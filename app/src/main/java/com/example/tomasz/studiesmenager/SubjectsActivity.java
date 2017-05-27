@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tomasz.studiesmenager.Model.Subject;
+
 import java.util.ArrayList;
 import java.util.List;
 

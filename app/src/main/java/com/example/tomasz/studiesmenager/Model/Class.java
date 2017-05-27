@@ -1,4 +1,4 @@
-package com.example.tomasz.studiesmenager;
+package com.example.tomasz.studiesmenager.Model;
 
 import com.orm.SugarRecord;
 

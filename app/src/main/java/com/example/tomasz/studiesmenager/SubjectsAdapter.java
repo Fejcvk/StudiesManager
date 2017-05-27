@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tomasz.studiesmenager.Model.Subject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,7 +53,7 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.Subjec
     @Override
     public void onBindViewHolder(final SubjectViewHolder holder, int position) {
         Subject subject = subjectList.get(position);
-        holder.title.setText(subject.getName());
+        holder.title.setText(subject.Name);
     }
 
     public void addItem(Subject subject, int index) {

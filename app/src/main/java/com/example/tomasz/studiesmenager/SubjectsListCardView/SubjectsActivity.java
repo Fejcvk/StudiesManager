@@ -1,5 +1,6 @@
 package com.example.tomasz.studiesmenager.SubjectsListCardView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -35,6 +36,7 @@ public class SubjectsActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
 
 
         mRecyclerView = (RecyclerView) findViewById(R.id.subject_recycler_view);

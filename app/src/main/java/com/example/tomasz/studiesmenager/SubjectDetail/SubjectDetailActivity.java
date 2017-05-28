@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static android.R.id.toggle;
+
 public class SubjectDetailActivity extends AppCompatActivity {
 
     private long subjectID;
@@ -26,6 +28,9 @@ public class SubjectDetailActivity extends AppCompatActivity {
     private List<Attendence> pastAttendences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subject_detail_layout);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

@@ -12,8 +12,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.TextView;
 
+import com.example.tomasz.studiesmenager.Model.Attendence;
 import com.example.tomasz.studiesmenager.Model.Subject;
 import com.example.tomasz.studiesmenager.Model.Class;
 import com.example.tomasz.studiesmenager.R;
@@ -125,47 +125,47 @@ public class addViewActivity extends AppCompatActivity {
         int totalScore = 0;
         EditText editText = (EditText) findViewById(R.id.subject_name);
         subject.Name = editText.getText().toString();
-        if(labPressed) {
-            subject.StartDate = labStartCalendar.getTime();
-            subject.EndDate = labEndCalendar.getTime();
-        }
-        if(tutPressed) {
-            subject.StartDate = tutStartCalendar.getTime();
-            subject.EndDate = tutEndCalendar.getTime();
-        }
-        if(lecPressed) {
-            subject.StartDate = lecStartCalendar.getTime();
-            subject.EndDate = lecEndCalendar.getTime();
-        }
         subject.save();
         final Button labButton = (Button) findViewById(R.id.labButtonId);
         final Button tutButton = (Button) findViewById(R.id.tutButtonId);
         final Button lecButton = (Button) findViewById(R.id.lecButtonId);
 
-        if(labPressed)
-        {
+        if(labPressed) {
             lab = new Class();
             lab.Type = Lab;
-            final EditText hScore = (EditText)findViewById(R.id.maxScoreLab);
+            final EditText hScore = (EditText) findViewById(R.id.maxScoreLab);
             totalScore += Integer.parseInt(hScore.getText().toString());
             lab.MaxScore = Integer.parseInt(hScore.getText().toString());
-            final EditText pScore = (EditText)findViewById(R.id.passScoreLab);
+            final EditText pScore = (EditText) findViewById(R.id.passScoreLab);
             lab.MinPassScore = Integer.parseInt((pScore.getText().toString()));
             lab.StartHour = labStartCalendar.getTime();
             lab.EndHour = labEndCalendar.getTime();
-            final RadioButton onceButton = (RadioButton)findViewById(R.id.lab_radio_once);
-            final RadioButton twiceButton = (RadioButton)findViewById(R.id.lab_radio_twice);
-            if(onceButton.isChecked())
+            final RadioButton onceButton = (RadioButton) findViewById(R.id.lab_radio_once);
+            if (onceButton.isChecked())
                 lab.FreqInWeeks = 1;
             else
                 lab.FreqInWeeks = 2;
-            final CheckBox checkBox = (CheckBox)findViewById(R.id.checkBoxLab);
-            if(checkBox.isChecked())
+            final CheckBox checkBox = (CheckBox) findViewById(R.id.checkBoxLab);
+            if (checkBox.isChecked())
                 lab.ShowNotifications = true;
             else
                 lab.ShowNotifications = false;
             lab.Subject = subject;
             lab.save();
+            for (int i = 0; i < 15 / lab.FreqInWeeks; i++) {
+                Attendence attendence = new Attendence();
+                if (lab.FreqInWeeks == 1) {
+                    attendence.Date = labStartCalendar.getTime();
+                    labStartCalendar.add(Calendar.DAY_OF_YEAR, +7);
+                } else {
+                    attendence.Date = labStartCalendar.getTime();
+                    labStartCalendar.add(Calendar.DAY_OF_YEAR, +14);
+                }
+                attendence.PointsEarned = 0;
+                attendence.WasPresent = false;
+                attendence.Class = lab;
+                attendence.save();
+            }
         }
         if(tutPressed)
         {
@@ -176,10 +176,9 @@ public class addViewActivity extends AppCompatActivity {
             tut.MaxScore = Integer.parseInt(hScore.getText().toString());
             final EditText pScore = (EditText)findViewById(R.id.passScoreTut);
             tut.MinPassScore = Integer.parseInt((pScore.getText().toString()));
-            tut.StartHour = labStartCalendar.getTime();
-            tut.EndHour = labEndCalendar.getTime();
+            tut.StartHour = tutStartCalendar.getTime();
+            tut.EndHour = tutEndCalendar.getTime();
             final RadioButton onceButton = (RadioButton)findViewById(R.id.tut_radio_once);
-            final RadioButton twiceButton = (RadioButton)findViewById(R.id.tut_radio_twice);
             if(onceButton.isChecked())
                 tut.FreqInWeeks = 1;
             else
@@ -191,18 +190,35 @@ public class addViewActivity extends AppCompatActivity {
                 tut.ShowNotifications = false;
             tut.Subject = subject;
             tut.save();
+            for(int i =0;i<15/tut.FreqInWeeks;i++)
+            {
+                Attendence attendence = new Attendence();
+                if(tut.FreqInWeeks == 1) {
+                    attendence.Date = tutStartCalendar.getTime();
+                    tutStartCalendar.add(Calendar.DAY_OF_YEAR, +7);
+                }
+                else
+                {
+                    attendence.Date = tutStartCalendar.getTime();
+                    tutStartCalendar.add(Calendar.DAY_OF_YEAR, +14);
+                }
+                attendence.PointsEarned = 0;
+                attendence.WasPresent = false;
+                attendence.Class = tut;
+                attendence.save();
+            }
         }
         if(lecPressed)
         {
             lec = new Class();
-            lec.Type = Class;
+            lec.Type = Lecture;
             final EditText hScore = (EditText)findViewById(R.id.maxScoreLec);
             totalScore += Integer.parseInt(hScore.getText().toString());
             lec.MaxScore = Integer.parseInt(hScore.getText().toString());
             final EditText pScore = (EditText)findViewById(R.id.passScoreLec);
             lec.MinPassScore = Integer.parseInt((pScore.getText().toString()));
-            lec.StartHour = labStartCalendar.getTime();
-            lec.EndHour = labEndCalendar.getTime();
+            lec.StartHour = lecStartCalendar.getTime();
+            lec.EndHour = lecEndCalendar.getTime();
             final RadioButton onceButton = (RadioButton)findViewById(R.id.lec_radio_once);
             final RadioButton twiceButton = (RadioButton)findViewById(R.id.lec_radio_twice);
             if(onceButton.isChecked())
@@ -216,6 +232,23 @@ public class addViewActivity extends AppCompatActivity {
                 lec.ShowNotifications = false;
             lec.Subject = subject;
             lec.save();
+            for(int i =0;i<15/lec.FreqInWeeks;i++)
+            {
+                Attendence attendence = new Attendence();
+                if(lec.FreqInWeeks == 1) {
+                    attendence.Date = lecStartCalendar.getTime();
+                    lecStartCalendar.add(Calendar.DAY_OF_YEAR, +7);
+                }
+                else
+                {
+                    attendence.Date = lecStartCalendar.getTime();
+                    lecStartCalendar.add(Calendar.DAY_OF_YEAR, +14);
+                }
+                attendence.PointsEarned = 0;
+                attendence.WasPresent = false;
+                attendence.Class = lec;
+                attendence.save();
+            }
         }
         Intent intent = new Intent(this, SubjectsActivity.class);
         startActivity(intent);

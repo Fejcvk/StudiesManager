@@ -4,17 +4,17 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/Subjects"
-            android:title="Subjects" />
+            android:title="Przedmioty" />
         <item
             android:id="@+id/Schedule"
-            android:title="Schedule" />
+            android:title="Harmonogram" />
         <item
             android:id="@+id/Stats"
-            android:title="Stats">
+            android:title="Statystyki">
         </item>
         <item
             android:id="@+id/AddSubject"
-            android:title="Add Subject"
+            android:title="Dodaj przedmiot"
             />
     </group>
 

@@ -24,5 +24,15 @@ public class Class  extends SugarRecord<Class>{
     public Subject Subject;
 
     public Class(){}
+    public Class(ClassType type, int maxScore, int minPassScore, Date startHour, Date endHour, int freqInWeeks, boolean showNotifications, Subject subject){
+        Type = type;
+        MaxScore = maxScore;
+        MinPassScore = minPassScore;
+        StartHour = startHour;
+        EndHour = endHour;
+        FreqInWeeks = freqInWeeks;
+        ShowNotifications = showNotifications;
+        Subject = subject;
+    }
 
 }

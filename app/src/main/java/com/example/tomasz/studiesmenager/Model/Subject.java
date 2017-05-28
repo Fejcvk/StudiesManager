@@ -10,8 +10,6 @@ import java.util.Date;
 
 public class Subject extends SugarRecord<Subject> {
     public String Name;
-    public Date StartDate;
-    public Date EndDate;
     public Subject(){}
 
     public Subject(String _name){

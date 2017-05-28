@@ -70,6 +70,8 @@ public class Menager extends AppCompatActivity {
         notificationIntent2.putExtra("ID",a2.getId());
         notificationIntent2.addCategory("android.intent.category.DEFAULT");
 
+
+
         PendingIntent broadcast = PendingIntent.getBroadcast(this, new Random().nextInt(3929), notificationIntent, PendingIntent.FLAG_ONE_SHOT);
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.SECOND, 1);

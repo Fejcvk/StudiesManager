@@ -30,5 +30,13 @@ public class NotificationReceiver extends BroadcastReceiver {
             NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
             manager.cancel((int)intent.getLongExtra("ID",0));
         }
+        else if(AppConstant.GRADE_ACTION.equals(action)) {
+            Attendence pastAttendences = Attendence.findById(Attendence.class,intent.getLongExtra("ID",0));
+            pastAttendences.WasPresent = true;
+            pastAttendences.save();
+            Intent i = new Intent();
+            i.setClassName("com.test", "com.test.MainActivity");
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        }
     }
 }

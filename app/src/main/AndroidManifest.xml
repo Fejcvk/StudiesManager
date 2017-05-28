@@ -28,24 +28,27 @@
         <activity android:name=".Main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity android:name=".DismissActivity" />
+
         <receiver android:name=".NotificationReceiver">
             <intent-filter>
-                <action android:name="YES_ACTION"/>
-                <action android:name="STOP_ACTION"/>
-                <action android:name="GRADE_ACTION"/>
+                <action android:name="YES_ACTION" />
+                <action android:name="STOP_ACTION" />
+                <action android:name="GRADE_ACTION" />
             </intent-filter>
         </receiver>
         <receiver
             android:name=".PushReceiver"
             android:theme="@android:style/Theme.NoDisplay">
             <intent-filter>
-                <action android:name="android.media.action.DISPLAY_NOTIFICATION"
-                    android:theme="@android:style/Theme.NoDisplay"/>
+                <action
+                    android:name="android.media.action.DISPLAY_NOTIFICATION"
+                    android:theme="@android:style/Theme.NoDisplay" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>
@@ -53,14 +56,20 @@
         <activity
             android:name=".SubjectDetail.SubjectDetailActivity"
             android:label="@string/title_activity_subject_detail"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SubjectsListCardView.SubjectsActivity"
             android:label="@string/title_activity_subjects"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".addView.addViewActivity" />
-        <activity android:name=".ScheduleViewActivity"></activity>
+        <activity android:name=".ScheduleViewActivity" />
+        <activity android:name=".Splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

@@ -1,95 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_view_template"
     android:layout_gravity="center"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    card_view:cardCornerRadius="4dp">
+    android:layout_margin="4dp"
+    android:layout_marginBottom="0dp">
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+        <TextView
+            android:id="@+id/card_subject_date"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:gravity="center"
+            android:text="15.05"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="24sp" />
+
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/colorButtonNormal"
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/card_subject_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:paddingEnd="10dp"
+                android:paddingStart="10dp"
+                android:paddingTop="4dp"
+                android:text="12:00"
+                android:textSize="12sp" />
+
+            <TextView
                 android:id="@+id/card_subject_title"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingEnd="10dp"
+                android:paddingStart="10dp"
+                android:paddingTop="5dp"
+                android:text="Podstawy Elektroniki"
+                android:textAlignment="viewStart"
                 android:textSize="18sp"
-                android:textStyle="bold"
-                android:paddingTop="10dp"
-                android:paddingLeft="10dp"
-                android:layout_weight="1"
-                android:text="@string/sv_subject_title" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:paddingTop="10dp"
-                android:paddingLeft="10dp"
-                android:paddingBottom="10dp"
-                android:layout_weight="2">
-
-                <TextView
-                    android:id="@+id/card_subject_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="13sp"
-                    android:text="@string/sv_subject_date" />
-
-                <TextView
-                    android:id="@+id/card_subject_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="13sp"
-
-                    android:text="@string/sv_subject_time" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <RelativeLayout
-            android:layout_width="0dip"
-            android:layout_height="wrap_content"
-            android:layout_weight="3">
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_weight="2"
+                android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
+
                     <TextView
                         android:id="@+id/textView4"
-                        android:layout_width="110dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="15sp"
-                        android:paddingTop="10dp"
-                        android:gravity="right"
-                        android:text="@string/sv_subject_att" />
+                        android:paddingEnd="5dp"
+                        android:paddingStart="10dp"
+                        android:paddingTop="5dp"
+                        android:text="@string/sv_subject_att"
+                        android:textAlignment="textStart"
+                        android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/card_subject_att"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="15sp"
-                        android:paddingTop="10dp"
-                        android:paddingLeft="10dp"
-                        android:text="@string/sv_subject_att_num" />
+                        android:paddingEnd="5dp"
+                        android:paddingStart="5dp"
+                        android:paddingTop="5dp"
+                        android:text="@string/sv_subject_att_num"
+                        android:textSize="14sp" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -97,26 +94,29 @@
 
                     <TextView
                         android:id="@+id/textView6"
-                        android:layout_width="110dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="15sp"
-                        android:paddingTop="10dp"
-                        android:gravity="right"
-                        android:text="@string/sv_subject_points" />
+                        android:paddingStart="5dp"
+                        android:paddingTop="5dp"
+                        android:text="@string/sv_subject_points"
+                        android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/card_subject_points"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="15sp"
-                        android:paddingTop="10dp"
-                        android:paddingLeft="10dp"
-                        android:text="@string/sv_subject_points_num" />
+                        android:paddingEnd="5dp"
+                        android:paddingStart="5dp"
+                        android:paddingTop="5dp"
+                        android:text="@string/sv_subject_points_num"
+                        android:textAlignment="textEnd"
+                        android:textSize="14sp" />
                 </LinearLayout>
 
             </LinearLayout>
 
-        </RelativeLayout>
+        </LinearLayout>
+
     </LinearLayout>
 
 

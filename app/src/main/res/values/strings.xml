@@ -22,4 +22,17 @@
     <string name="classStartDate">Podaj date rozpoczęcia przedmiotu</string>
     <string name="onceAWeek">Raz w tygodniu</string>
     <string name="twiceAWeek">Raz na dwa tygodnie</string>
+    <!-- Main Activity-->
+        <string name="open_schedule_view_btn">Schedule</string>
+    <!-- /Main Activity-->
+
+    <!-- Schedule View Activity-->
+        <string name="sv_subject_title">TYTUŁ ZAJĘĆ</string>
+        <string name="sv_subject_date">1 LIPCA</string>
+        <string name="sv_subject_time">15:00 - 18:00</string>
+        <string name="sv_subject_att">OBECNOŚĆ:</string>
+        <string name="sv_subject_att_num">90%</string>
+        <string name="sv_subject_points">PUNKTY:</string>
+        <string name="sv_subject_points_num">25/50</string>
+    <!-- /Schedule View Activity-->
 </resources>

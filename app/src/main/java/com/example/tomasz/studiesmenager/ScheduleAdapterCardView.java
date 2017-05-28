@@ -65,7 +65,7 @@ public class ScheduleAdapterCardView extends RecyclerView.Adapter<ScheduleAdapte
 
         switch(a.Class.Type) {
             case Lab:
-                classType = "Laboratiorum";
+                classType = "Laboratorium";
                 color = 0xff909090;
                 break;
 

@@ -80,6 +80,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AttendenceViewHold
                     String t = holder.et.getText().toString();
                     try {
                         a.PointsEarned = Integer.parseInt(t);
+                        a.WasPresent = true;
                         a.save();
                         expandedPosition = -1;
                         holder.details.setVisibility(View.GONE);
@@ -95,7 +96,11 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AttendenceViewHold
 
         holder.cv.setBackgroundColor(color);
         holder.classType.setText(classType);
-        holder.et.setText(String.valueOf(a.PointsEarned));
+        if (a.PointsEarned != 0)
+            holder.et.setText(String.valueOf(a.PointsEarned));
+        else
+            holder.et.setText("");
+
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
         holder.date.setText(sdf.format(a.Date));

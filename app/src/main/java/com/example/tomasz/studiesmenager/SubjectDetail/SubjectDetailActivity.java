@@ -16,6 +16,8 @@ import com.example.tomasz.studiesmenager.Model.Subject;
 import com.example.tomasz.studiesmenager.R;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -60,6 +62,11 @@ public class SubjectDetailActivity extends AppCompatActivity {
             }
         }
         pastAttendences = tmp;
+        Collections.sort(pastAttendences, new Comparator<Attendence>(){
+            public int compare(Attendence s1, Attendence s2) {
+                return s1.Date.compareTo(s2.Date);
+            }
+        });
 
         RecyclerView rv = (RecyclerView)findViewById(R.id.CardsContainer);
 

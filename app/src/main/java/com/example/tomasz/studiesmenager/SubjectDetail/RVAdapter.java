@@ -23,10 +23,11 @@ import java.util.Locale;
  * Created by hub on 2017-05-27.
  */
 
-public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AttendenceViewHolder>{
+public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AttendenceViewHolder>
+    implements View.OnClickListener{
 
     private List<Attendence> attendences;
-    private int mExpandedPosition = -1;
+    private int expandedPosition = -1;
     private RecyclerView recyclerView;
     public RVAdapter(List<Attendence> pastAttendences, RecyclerView rv)
     {
@@ -38,6 +39,8 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AttendenceViewHold
     public AttendenceViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_subject_detail, parent, false);
         AttendenceViewHolder pvh = new AttendenceViewHolder(v);
+        pvh.itemView.setOnClickListener(RVAdapter.this);
+        pvh.itemView.setTag(pvh);
         return pvh;
     }
 
@@ -66,17 +69,13 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AttendenceViewHold
                 color = 0xffbeeffa;
                 break;
         }
-        final boolean isExpanded = position == mExpandedPosition;
-        holder.details.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
-        holder.itemView.setActivated(isExpanded);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mExpandedPosition = isExpanded ? -1 : holder.getAdapterPosition();
-                TransitionManager.beginDelayedTransition(recyclerView);
-                notifyDataSetChanged();
-            }
-        });
+
+        if (position == expandedPosition) {
+            holder.details.setVisibility(View.VISIBLE);
+        } else {
+            holder.details.setVisibility(View.GONE);
+        }
+
         holder.cv.setBackgroundColor(color);
         holder.classType.setText(classType);
 
@@ -87,6 +86,26 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AttendenceViewHold
     @Override
     public int getItemCount() {
         return attendences.size();
+    }
+
+    @Override
+    public void onClick(View view) {
+        AttendenceViewHolder holder = (AttendenceViewHolder) view.getTag();
+        Attendence a = attendences.get(holder.getAdapterPosition());
+
+        // Check for an expanded view, collapse if you find one
+        if (expandedPosition >= 0) {
+            int prev = expandedPosition;
+            if(expandedPosition == holder.getAdapterPosition()) {
+                expandedPosition = -1;
+                notifyItemChanged(prev);
+                return;
+            }
+            notifyItemChanged(prev);
+        }
+        // Set the current position to "expanded"
+        expandedPosition = holder.getAdapterPosition();
+        notifyItemChanged(expandedPosition);
     }
 
     public static class AttendenceViewHolder extends RecyclerView.ViewHolder {

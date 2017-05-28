@@ -33,13 +33,6 @@ public class ScheduleAdapterCardView extends RecyclerView.Adapter<ScheduleAdapte
 
     // Provide a suitable constructor (depends on the kind of dataset)
     public ScheduleAdapterCardView(List<Attendence> al) {
-        Collections.sort(al, new Comparator<Attendence>() {
-            @Override
-            public int compare(Attendence o1, Attendence o2) {
-                return o1.Date.compareTo(o2.Date);
-            }
-        });
-
         mDataset = al;
     }
 

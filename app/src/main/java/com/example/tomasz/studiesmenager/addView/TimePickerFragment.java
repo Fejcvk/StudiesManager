@@ -10,7 +10,16 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 
+import com.example.tomasz.studiesmenager.R;
+
 import java.util.Calendar;
+
+import static com.example.tomasz.studiesmenager.addView.addViewActivity.labEndCalendar;
+import static com.example.tomasz.studiesmenager.addView.addViewActivity.labStartCalendar;
+import static com.example.tomasz.studiesmenager.addView.addViewActivity.lecEndCalendar;
+import static com.example.tomasz.studiesmenager.addView.addViewActivity.lecStartCalendar;
+import static com.example.tomasz.studiesmenager.addView.addViewActivity.tutEndCalendar;
+import static com.example.tomasz.studiesmenager.addView.addViewActivity.tutStartCalendar;
 
 /**
  * Created by Tomasz on 27/05/2017.
@@ -20,8 +29,9 @@ public class TimePickerFragment extends DialogFragment
         implements TimePickerDialog.OnTimeSetListener{
 
     static int hour;
-    public int minute;
+    static int minute;
     public View Editview;
+    public Calendar calendar;
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the current date as the default date in the picker
@@ -37,13 +47,33 @@ public class TimePickerFragment extends DialogFragment
     {
         super();
         Editview = v;
+
     }
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minutes) {
         hour = hourOfDay;
         minute = minutes;
-
+        calendar = Calendar.getInstance();
         TextView textView = (TextView) Editview;
         textView.setText(hour+":"+minute);
+        calendar.set(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH),hour,minute);
+        TextView textViewLS = (TextView) getActivity().findViewById(R.id.startHourTxtLab);
+        if(textView == textViewLS)
+            labStartCalendar = calendar;
+        TextView textViewLE = (TextView) getActivity().findViewById(R.id.endHourTxtLab);
+        if(textView == textViewLE)
+            labEndCalendar = calendar;
+        TextView textViewTS = (TextView) getActivity().findViewById(R.id.startHourTxtTut);
+        TextView textViewTE = (TextView) getActivity().findViewById(R.id.endHourTxtLab);
+        TextView textViewLeS = (TextView) getActivity().findViewById(R.id.startHourTxtLec);
+        TextView textViewLeE = (TextView) getActivity().findViewById(R.id.endHourTxtLec);
+        if(textView == textViewTS)
+            tutStartCalendar = calendar;
+        if(textView == textViewTE)
+            tutEndCalendar = calendar;
+        if(textView == textViewLeS)
+            lecStartCalendar = calendar;
+        if(textView == textViewLeE)
+            lecEndCalendar = calendar;
     }
 }

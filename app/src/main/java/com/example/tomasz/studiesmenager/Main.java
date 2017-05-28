@@ -230,7 +230,7 @@ public class Main extends AppCompatActivity
         else if (id == R.id.Stats){
             intent = new Intent(this, SubjectsActivity.class);
         }
-        else if (id == R.id.AddSubject){
+        else if (id == R.id.AddSubject) {
             intent = new Intent(this, addViewActivity.class);
         }
         startActivity(intent);

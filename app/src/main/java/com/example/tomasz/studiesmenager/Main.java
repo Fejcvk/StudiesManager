@@ -20,6 +20,7 @@ import com.example.tomasz.studiesmenager.Model.Class;
 import com.example.tomasz.studiesmenager.SubjectsListCardView.SubjectsActivity;
 import com.example.tomasz.studiesmenager.addView.addViewActivity;
 
+import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
@@ -237,7 +238,8 @@ public class Main extends AppCompatActivity
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent notificationIntent = new Intent("android.media.action.DISPLAY_NOTIFICATION");
         notificationIntent.putExtra("Present",a.WasPresent);
-        notificationIntent.putExtra("Date",a.Date.toString());
+        DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(getApplicationContext());                ;
+        notificationIntent.putExtra("Date",dateFormat.format(a.Date).toString());
         notificationIntent.putExtra("ID",a.getId());
         notificationIntent.addCategory("android.intent.category.DEFAULT");
 

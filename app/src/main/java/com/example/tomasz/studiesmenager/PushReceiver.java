@@ -41,7 +41,7 @@ public class PushReceiver extends BroadcastReceiver{
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
 
         Notification notification = builder.setContentTitle("Student Manager")
-                .setContentText(intent.getExtras().getBoolean("Subject") + " " + intent.getExtras().getString("Date"))
+                .setContentText(intent.getExtras().getString("Subject") + " " + intent.getExtras().getString("Date"))
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setAutoCancel(true)
                 .setVisibility(Notification.VISIBILITY_PUBLIC)

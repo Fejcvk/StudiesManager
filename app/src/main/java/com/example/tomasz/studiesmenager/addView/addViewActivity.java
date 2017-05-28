@@ -122,19 +122,14 @@ public class addViewActivity extends AppCompatActivity {
         Class lab;
         Class tut;
         Class lec;
-        int totalScore = 0;
         EditText editText = (EditText) findViewById(R.id.subject_name);
         subject.Name = editText.getText().toString();
         subject.save();
-        final Button labButton = (Button) findViewById(R.id.labButtonId);
-        final Button tutButton = (Button) findViewById(R.id.tutButtonId);
-        final Button lecButton = (Button) findViewById(R.id.lecButtonId);
 
         if(labPressed) {
             lab = new Class();
             lab.Type = Lab;
             final EditText hScore = (EditText) findViewById(R.id.maxScoreLab);
-            totalScore += Integer.parseInt(hScore.getText().toString());
             lab.MaxScore = Integer.parseInt(hScore.getText().toString());
             final EditText pScore = (EditText) findViewById(R.id.passScoreLab);
             lab.MinPassScore = Integer.parseInt((pScore.getText().toString()));
@@ -172,7 +167,6 @@ public class addViewActivity extends AppCompatActivity {
             tut = new Class();
             tut.Type = Class;
             final EditText hScore = (EditText)findViewById(R.id.maxScoreTut);
-            totalScore += Integer.parseInt(hScore.getText().toString());
             tut.MaxScore = Integer.parseInt(hScore.getText().toString());
             final EditText pScore = (EditText)findViewById(R.id.passScoreTut);
             tut.MinPassScore = Integer.parseInt((pScore.getText().toString()));

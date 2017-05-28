@@ -34,5 +34,6 @@
     <string name="sv_subject_att_num">90%</string>
     <string name="sv_subject_points">PUNKTY:</string>
     <string name="sv_subject_points_num">25/50</string>
+    <string name="title_activity_main2">Main2Activity</string>
     <!-- /Schedule View Activity-->
 </resources>

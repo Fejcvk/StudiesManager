@@ -43,7 +43,8 @@ public class DatePickerFragment extends DialogFragment
     }
     public void onDateSet(DatePicker view, int year, int month, int day) {
         TextView textView = (TextView) EditView;
-        textView.setText(day+" - "+month+" - "+year);
+        month+=1;
+        textView.setText(day + " - " + month + " - " + year);
         calendar = Calendar.getInstance();
         calendar.set(year,month,day,calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE));
         TextView textViewLS = (TextView) getActivity().findViewById(R.id.startHourTxtLab);

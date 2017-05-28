@@ -162,7 +162,7 @@ public class addViewActivity extends AppCompatActivity {
 
                 AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
                 Intent notificationIntent = new Intent("android.media.action.DISPLAY_NOTIFICATION");
-                notificationIntent.putExtra("Subject",attendence.Class.Subject.toString());
+                notificationIntent.putExtra("Subject",attendence.Class.Subject.Name.toString());
                 notificationIntent.putExtra("Date",attendence.Date.toString());
                 notificationIntent.putExtra("ID",attendence.getId());
                 notificationIntent.addCategory("android.intent.category.DEFAULT");
@@ -213,7 +213,7 @@ public class addViewActivity extends AppCompatActivity {
 
                 AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
                 Intent notificationIntent = new Intent("android.media.action.DISPLAY_NOTIFICATION");
-                notificationIntent.putExtra("Subject",attendence.Class.Subject.toString());
+                notificationIntent.putExtra("Subject",attendence.Class.Subject.Name.toString());
                 notificationIntent.putExtra("Date",attendence.Date.toString());
                 notificationIntent.putExtra("ID",attendence.getId());
                 notificationIntent.addCategory("android.intent.category.DEFAULT");
@@ -264,7 +264,7 @@ public class addViewActivity extends AppCompatActivity {
 
                 AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
                 Intent notificationIntent = new Intent("android.media.action.DISPLAY_NOTIFICATION");
-                notificationIntent.putExtra("Subject",attendence.Class.Subject.toString());
+                notificationIntent.putExtra("Subject",attendence.Class.Subject.Name.toString());
                 notificationIntent.putExtra("Date",attendence.Date.toString());
                 notificationIntent.putExtra("ID",attendence.getId());
                 notificationIntent.addCategory("android.intent.category.DEFAULT");

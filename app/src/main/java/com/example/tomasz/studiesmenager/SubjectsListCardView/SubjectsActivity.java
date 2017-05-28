@@ -42,6 +42,7 @@ public class SubjectsActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new SubjectsAdapter(Subject.listAll(Subject.class));
         mRecyclerView.setAdapter(mAdapter);
+
     }
 
 

@@ -15,4 +15,13 @@ public class Attendence extends SugarRecord<Attendence>{
     public Class Class;
 
     public Attendence(){}
+   /* public void generatePush(int count) {
+        for(int i = 0;i < 10;i++) {
+            pastAttendences = Attendence.findWithQuery(Attendence.class,
+                    "select * from attendence join class on class.id = class join subject on subject.id = class.subject where subject.id = ?",
+                    String.valueOf(subjectID));
+        }
+    }*/
 }
+
+

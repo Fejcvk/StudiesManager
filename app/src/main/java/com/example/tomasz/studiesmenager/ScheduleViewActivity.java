@@ -8,6 +8,10 @@ import android.widget.FrameLayout;
 
 import com.example.tomasz.studiesmenager.Model.Attendence;
 
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import static java.lang.System.in;
@@ -23,11 +27,13 @@ public class ScheduleViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule_view);
         List<Attendence> al = Attendence.listAll(Attendence.class);
-        //al.get(0).Class.Subject.Name;
 
-       // recycler_view
-
-
+        Collections.sort(al, new Comparator<Attendence>() {
+            @Override
+            public int compare(Attendence o1, Attendence o2) {
+                return o1.Date.compareTo(o2.Date);
+            }
+        });
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         //mRecyclerView.setHasFixedSize(true);
@@ -38,6 +44,14 @@ public class ScheduleViewActivity extends AppCompatActivity {
         mAdapter = new ScheduleAdapterCardView(al);
         mRecyclerView.setAdapter(mAdapter);
 
+        int count = 0;
+        Date now = new Date();
+        for (Iterator<Attendence> i = al.iterator(); i.hasNext();) {
+            Attendence item = i.next();
+            if (item.Date.compareTo(now) < 0) count++;
+            else break;
+        }
+        mLayoutManager.scrollToPosition(count);
 
     }
 

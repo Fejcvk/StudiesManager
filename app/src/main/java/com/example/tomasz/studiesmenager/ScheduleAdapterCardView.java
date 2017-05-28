@@ -9,9 +9,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
-//import com.example.tomasz.studiesmenager.Model.Attendence;
 import com.example.tomasz.studiesmenager.Model.Attendence;
-import com.example.tomasz.studiesmenager.R;
+
 
 import java.util.Calendar;
 import java.util.Collections;
@@ -33,13 +32,6 @@ public class ScheduleAdapterCardView extends RecyclerView.Adapter<ScheduleAdapte
 
     // Provide a suitable constructor (depends on the kind of dataset)
     public ScheduleAdapterCardView(List<Attendence> al) {
-        Collections.sort(al, new Comparator<Attendence>() {
-            @Override
-            public int compare(Attendence o1, Attendence o2) {
-                return o1.Date.compareTo(o2.Date);
-            }
-        });
-
         mDataset = al;
     }
 
@@ -99,8 +91,8 @@ public class ScheduleAdapterCardView extends RecyclerView.Adapter<ScheduleAdapte
 //        holder.classType.setText(classType);
         holder.title.setText(a.Class.Subject.Name);
 
-        TimeZone tz = TimeZone.getDefault ();
-        Calendar c = Calendar.getInstance (tz);
+        TimeZone tz = TimeZone.getDefault();
+        Calendar c = Calendar.getInstance(tz);
         Calendar h = Calendar.getInstance(tz);
         c.setTime(a.Date);
         h.setTime(a.Class.StartHour);

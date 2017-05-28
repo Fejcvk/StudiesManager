@@ -1,6 +1,8 @@
 package com.example.tomasz.studiesmenager.SubjectDetail;
 
+import android.content.Context;
 import android.support.transition.TransitionManager;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -31,10 +34,12 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AttendenceViewHold
     private List<Attendence> attendences;
     private int expandedPosition = -1;
     private RecyclerView recyclerView;
-    public RVAdapter(List<Attendence> pastAttendences, RecyclerView rv)
+    private Context ctx;
+    public RVAdapter(List<Attendence> pastAttendences, RecyclerView rv, Context context)
     {
         attendences = pastAttendences;
         recyclerView = rv;
+        ctx = context;
 
     }
     @Override
@@ -57,7 +62,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AttendenceViewHold
         switch(a.Class.Type)
         {
             case Lab:
-                classType = "Laboratiorum";
+                classType = "Laboratorium";
                 color = 0xff909090;
                 break;
 
@@ -79,7 +84,11 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AttendenceViewHold
                 public void onClick(View view) {
                     String t = holder.et.getText().toString();
                     try {
-                        a.PointsEarned = Integer.parseInt(t);
+                        if (t.equals(""))
+                            a.PointsEarned = 0;
+                        else
+                            a.PointsEarned = Integer.parseInt(t);
+                        a.WasPresent = !a.WasPresent;
                         a.save();
                         expandedPosition = -1;
                         holder.details.setVisibility(View.GONE);
@@ -87,6 +96,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AttendenceViewHold
                     {
 
                     }
+                    notifyItemChanged(holder.getAdapterPosition());
                 }
             });
         } else {
@@ -94,8 +104,22 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AttendenceViewHold
         }
 
         holder.cv.setBackgroundColor(color);
+        if(a.WasPresent) {
+            holder.iv.setImageDrawable(ctx.getDrawable(R.drawable.ic_done_black_24dp));
+            holder.btn.setText("Nieobecny");
+        }
+        else {
+            holder.iv.setImageDrawable(ctx.getDrawable(R.drawable.ic_close_black_24dp));
+            holder.btn.setText("Obecny");
+        }
+
         holder.classType.setText(classType);
-        holder.et.setText(String.valueOf(a.PointsEarned));
+        if (a.PointsEarned != 0)
+            holder.et.setText(String.valueOf(a.PointsEarned));
+        else
+            holder.et.setText("");
+
+
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
         holder.date.setText(sdf.format(a.Date));
@@ -131,6 +155,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AttendenceViewHold
         TextView classType;
         TextView date;
         LinearLayout details;
+        ImageView iv;
         Button btn;
         EditText et;
 
@@ -142,6 +167,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AttendenceViewHold
             details = (LinearLayout) itemView.findViewById(R.id.details);
             btn = (Button) itemView.findViewById(R.id.btnPresent);
             et = (EditText) itemView.findViewById(R.id.pointsEarned);
+            iv = (ImageView) itemView.findViewById(R.id.was_there_photo);
         }
     }
     @Override

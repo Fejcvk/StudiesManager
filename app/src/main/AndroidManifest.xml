@@ -27,11 +27,11 @@
             android:value="com.example.tomasz.studiesmenager" />
 
         <activity android:name=".Main">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
         <activity android:name=".DismissActivity" />
 
@@ -67,10 +67,10 @@
         <activity android:name=".addView.addViewActivity"
             android:label="@string/title_activity_subject_detail"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".Splash">
+        <activity android:name=".Splash"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

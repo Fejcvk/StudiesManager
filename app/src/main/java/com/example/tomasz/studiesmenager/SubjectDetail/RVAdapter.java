@@ -7,6 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -47,7 +49,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AttendenceViewHold
     @Override
     public void onBindViewHolder(final AttendenceViewHolder holder, int position) {
 
-        Attendence a = attendences.get(position);
+        final Attendence a = attendences.get(position);
         if (a == null) return;
         String classType = "";
         int color = 0xffffffff;
@@ -72,12 +74,28 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AttendenceViewHold
 
         if (position == expandedPosition) {
             holder.details.setVisibility(View.VISIBLE);
+            holder.btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String t = holder.et.getText().toString();
+                    try {
+                        a.PointsEarned = Integer.parseInt(t);
+                        a.save();
+                        expandedPosition = -1;
+                        holder.details.setVisibility(View.GONE);
+                    }catch(NumberFormatException e)
+                    {
+
+                    }
+                }
+            });
         } else {
             holder.details.setVisibility(View.GONE);
         }
 
         holder.cv.setBackgroundColor(color);
         holder.classType.setText(classType);
+        holder.et.setText(String.valueOf(a.PointsEarned));
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
         holder.date.setText(sdf.format(a.Date));
@@ -113,6 +131,8 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AttendenceViewHold
         TextView classType;
         TextView date;
         LinearLayout details;
+        Button btn;
+        EditText et;
 
         AttendenceViewHolder(View itemView) {
             super(itemView);
@@ -120,6 +140,8 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AttendenceViewHold
             classType = (TextView)itemView.findViewById(R.id.card_subject_type_name);
             date = (TextView)itemView.findViewById(R.id.card_subject_date);
             details = (LinearLayout) itemView.findViewById(R.id.details);
+            btn = (Button) itemView.findViewById(R.id.btnPresent);
+            et = (EditText) itemView.findViewById(R.id.pointsEarned);
         }
     }
     @Override

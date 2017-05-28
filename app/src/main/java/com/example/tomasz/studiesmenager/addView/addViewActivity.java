@@ -125,18 +125,6 @@ public class addViewActivity extends AppCompatActivity {
         int totalScore = 0;
         EditText editText = (EditText) findViewById(R.id.subject_name);
         subject.Name = editText.getText().toString();
-        if(labPressed) {
-            subject.StartDate = labStartCalendar.getTime();
-            subject.EndDate = labEndCalendar.getTime();
-        }
-        if(tutPressed) {
-            subject.StartDate = tutStartCalendar.getTime();
-            subject.EndDate = tutEndCalendar.getTime();
-        }
-        if(lecPressed) {
-            subject.StartDate = lecStartCalendar.getTime();
-            subject.EndDate = lecEndCalendar.getTime();
-        }
         subject.save();
         final Button labButton = (Button) findViewById(R.id.labButtonId);
         final Button tutButton = (Button) findViewById(R.id.tutButtonId);

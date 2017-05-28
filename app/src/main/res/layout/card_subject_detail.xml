@@ -48,11 +48,22 @@
             android:layout_height="wrap_content"
             android:visibility="gone"
             android:id="@+id/details"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:padding="5dp">
+            <EditText
+                android:id="@+id/pointsEarned"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="GUWNO"/>
+                android:layout_gravity="start"
+                android:gravity="center"
+                android:layout_weight="1"/>
+            <Button
+                android:id="@+id/btnPresent"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Obecny"
+                android:layout_gravity="right"/>
+
         </LinearLayout>
     </LinearLayout>
 </android.support.v7.widget.CardView>

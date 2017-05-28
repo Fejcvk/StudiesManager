@@ -13,7 +13,11 @@ import android.widget.TextView;
 import com.example.tomasz.studiesmenager.Model.Attendence;
 import com.example.tomasz.studiesmenager.R;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by hub on 2017-05-27.
@@ -75,7 +79,9 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AttendenceViewHold
         });
         holder.cv.setBackgroundColor(color);
         holder.classType.setText(classType);
-        holder.date.setText(a.Date.toString());
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
+        holder.date.setText(sdf.format(a.Date));
     }
 
     @Override

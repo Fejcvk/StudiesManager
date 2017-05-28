@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Studies Menager</string>
+    <string name="app_name">Przepołowić</string>
     <string name="title_activity_subject_detail">SubjectDetailActivity</string>
     <string name="title_activity_subjects">Przedmioty</string>
     <string name="title_activity_main">Main</string>

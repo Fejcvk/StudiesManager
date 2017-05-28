@@ -41,12 +41,12 @@ public class PushReceiver extends BroadcastReceiver{
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
 
         Notification notification = builder.setContentTitle("Student Manager")
-                .setContentText(intent.getExtras().getBoolean("Present") + " " + intent.getExtras().getString("Date"))
+                .setContentText(intent.getExtras().getBoolean("Subject") + " " + intent.getExtras().getString("Date"))
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setAutoCancel(true)
                 .setVisibility(Notification.VISIBILITY_PUBLIC)
-                .addAction(R.drawable.tick,"Obecny",pendingIntentYes)
-                .addAction(R.drawable.cross,"Nieobecny",pendingIntentYes2)
+                .addAction(R.drawable.tick,"TAK",pendingIntentYes)
+                .addAction(R.drawable.cross,"NIE",pendingIntentYes2)
                 .addAction(R.drawable.grade,"PKT",pendingIntentYes3)
                 .setFullScreenIntent(pendingIntent,true)
                 .setColor(Color.WHITE)

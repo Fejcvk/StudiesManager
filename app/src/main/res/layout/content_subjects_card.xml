@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="5dp"
+         android:layout_margin="8dp"
         card_view:cardCornerRadius="2dp"
         card_view:contentPadding="10dp">
 
@@ -28,6 +28,13 @@
                 android:layout_alignParentTop="true"
                 android:textSize="18sp"
                 android:padding="10dp"/>
+
+            <TextView
+                android:id="@+id/stats_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/subject_title"
+                android:textSize="12sp"/>
 
         </RelativeLayout>
 

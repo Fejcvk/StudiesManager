@@ -3,7 +3,7 @@
     android:layout_height="match_parent" android:paddingLeft="20px"
     android:paddingRight="20px"
     android:paddingTop="20px"
-    android:paddingBottom="20px" tools:context=".Menager"
+    android:paddingBottom="20px"
     android:theme="@android:style/Theme.NoDisplay">
 
     <TextView android:text="Show Notification Details Here..." android:layout_width="wrap_content"

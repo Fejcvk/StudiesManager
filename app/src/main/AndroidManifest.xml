@@ -17,7 +17,7 @@
             android:value="manager.db" />
         <meta-data
             android:name="VERSION"
-            android:value="5" />
+            android:value="6" />
         <meta-data
             android:name="QUERY_LOG"
             android:value="true" />
@@ -26,11 +26,6 @@
             android:value="com.example.tomasz.studiesmenager" />
 
         <activity android:name=".Main">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".DismissActivity" />
 
@@ -60,10 +55,15 @@
         <activity
             android:name=".SubjectsListCardView.SubjectsActivity"
             android:label="@string/title_activity_subjects"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".addView.addViewActivity" />
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".ScheduleViewActivity" />
-        <activity android:name=".Splash">
+        <activity
+            android:name=".addView.addViewActivity"
+            android:label="@string/title_activity_subject_detail"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Splash"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

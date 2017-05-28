@@ -5,39 +5,63 @@
     android:id="@+id/card_view_template"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_margin="8dp"
-    android:layout_marginBottom="0dp">
-
-    <RelativeLayout
+    android:layout_marginBottom="0dp"
+    android:orientation="vertical">
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        >
-
-        <ImageView
-            android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/class_type_photo"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginRight="16dp"
-            />
+            android:padding="16dp"
+            >
 
-        <TextView
-            android:layout_width="wrap_content"
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/card_subject_type_name"
+                android:layout_alignParentTop="true"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/card_subject_date"
+                android:layout_below="@+id/card_subject_type_name"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:id="@+id/was_there_photo"
+                android:layout_alignParentEnd="true"
+                />
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/card_subject_type_name"
-            android:layout_toRightOf="@+id/class_type_photo"
-            android:layout_alignParentTop="true"
-            android:textSize="30sp"
-            />
+            android:visibility="gone"
+            android:id="@+id/details"
+            android:orientation="horizontal"
+            android:padding="5dp">
+            <EditText
+                android:id="@+id/pointsEarned"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:inputType="number"
+                android:hint="Podaj ilość punktów"/>
+            <Button
+                android:id="@+id/btnPresent"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Obecny"
+                android:layout_gravity="right"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/card_subject_date"
-            android:layout_toRightOf="@+id/class_type_photo"
-            android:layout_below="@+id/card_subject_type_name"
-            />
-    </RelativeLayout>
-
+        </LinearLayout>
+    </LinearLayout>
 </android.support.v7.widget.CardView>

@@ -38,8 +38,8 @@ public class Splash extends Activity {
         decorView.setSystemUiVisibility(uiOptions);
         // Remember that you should never show the action bar if the
         // status bar is hidden, so hide that too if necessary.
-        ActionBar actionBar = getActionBar();
-        actionBar.hide();
+//        ActionBar actionBar = getActionBar();
+//        actionBar.hide();
 
 
         //Hide software buttons

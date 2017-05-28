@@ -1,8 +1,6 @@
 package com.example.tomasz.studiesmenager.SubjectsListCardView;
 
 import android.content.Intent;
-import android.support.design.widget.Snackbar;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,16 +8,18 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.tomasz.studiesmenager.Model.Attendence;
 import com.example.tomasz.studiesmenager.Model.Subject;
 import com.example.tomasz.studiesmenager.R;
 import com.example.tomasz.studiesmenager.SubjectDetail.SubjectDetailActivity;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
 public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.SubjectViewHolder> {
 
     private List<Subject> subjectList;
-    private static SubjectClickListener subjectClickListener;
 
     public SubjectsAdapter(List<Subject> subjectList) {
         this.subjectList = subjectList;
@@ -28,16 +28,13 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.Subjec
     public class SubjectViewHolder extends RecyclerView.ViewHolder{
         public TextView title;
         public LinearLayout linlayout;
+        public TextView stats;
         public SubjectViewHolder(View view) {
             super(view);
-
             title = (TextView) view.findViewById(R.id.subject_title);
             linlayout = (LinearLayout) view.findViewById(R.id.linear_layout);
+            stats = (TextView) view.findViewById(R.id.stats_label);
         }
-    }
-
-    public void setOnItemClickListener(SubjectClickListener _subjectClickListener) {
-        this.subjectClickListener = _subjectClickListener;
     }
 
     @Override
@@ -53,6 +50,10 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.Subjec
         Subject subject = subjectList.get(position);
         holder.title.setText(subject.Name);
 
+//        List<Attendence> attendences = Attendence.findWithQuery(Attendence.class,
+//                "select * from attendence join class on class.id = class join subject on subject.id = class.subject where subject.id = ?",
+//                String.valueOf(subject.getId()));
+        holder.stats.setText("");
         holder.linlayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -76,9 +77,5 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.Subjec
     @Override
     public int getItemCount() {
         return subjectList.size();
-    }
-
-    public interface SubjectClickListener {
-        public void onItemClick(int position, View v);
     }
 }

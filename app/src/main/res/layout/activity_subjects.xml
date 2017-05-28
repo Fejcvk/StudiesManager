@@ -20,6 +20,14 @@
 
     </android.support.design.widget.AppBarLayout>
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/addSubject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:src = "@drawable/ic_add_white_24dp"
+        android:layout_margin="@dimen/fab_margin" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/subject_recycler_view"
         android:layout_width="match_parent"
@@ -28,11 +36,5 @@
         android:clipToPadding="false"
         android:scrollbars="vertical" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/addSubject"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="25dp" />
 
 </android.support.design.widget.CoordinatorLayout>

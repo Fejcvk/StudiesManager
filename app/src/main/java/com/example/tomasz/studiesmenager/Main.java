@@ -15,6 +15,7 @@ import com.example.tomasz.studiesmenager.Model.Subject;
 import com.example.tomasz.studiesmenager.Model.Class;
 import com.example.tomasz.studiesmenager.SubjectsListCardView.SubjectsActivity;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class Main extends AppCompatActivity
@@ -36,91 +37,156 @@ public class Main extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        Subject s = new Subject();
-        s.Name = "Algebra";
-        s.EndDate = new Date(1990, 12, 1);
-        s.StartDate = new Date(1990, 12, 1);
-        s.save();
+        Subject electronicsPrinciples = new Subject("Podstawy Elektroniki");
+        electronicsPrinciples.save();
+        Subject digitalSystems = new Subject("EKSC");
+        digitalSystems.save();
+        Subject algebra = new Subject("Algebra");
+        algebra.save();
+        Subject graphProg = new Subject("PwSG");
+        graphProg.save();
+        Subject discreteMath = new Subject("Matematyka Dyskretna");
+        discreteMath.save();
 
-        Subject s2 = new Subject();
-        s2.Name = "Algebra2";
-        s2.EndDate = new Date(1999, 12, 1);
-        s2.StartDate = new Date(1999, 12, 1);
-        s2.save();
+        Date date2 = new Date(117, 3, 10,16,15);
+        Date date1 = new Date(117, 3, 10,18,15);
+        Date date = new Date(117, 3, 10,20,15);
+        Date date3 = new Date(117, 3, 11, 8, 15);
+        Date date4 = new Date(117, 3, 11, 10, 15);
 
-        Class c = new Class();
-        c.Type = Class.ClassType.Lab;
-        c.EndHour = new Date(1996, 12, 10);
-        c.StartHour = new Date(1996, 12, 10);
-        c.FreqInWeeks = 1;
-        c.MaxScore = 100;
-        c.MinPassScore = 50;
-        c.Subject = s;
-        c.save();
+        Class epLab = new Class(Class.ClassType.Lab,100, 50, date,date1,1,true,electronicsPrinciples);
+        epLab.save();
+        Class epLect = new Class(Class.ClassType.Lecture,100, 50, date1,date2,1,true,electronicsPrinciples);
+        epLect.save();
+        Class epTut = new Class(Class.ClassType.Class,100, 50, date3,date4,1,true,electronicsPrinciples);
+        epTut.save();
+        Class algebraTut = new Class(Class.ClassType.Class,100, 50, new Date(117,3,8,15,15),new Date(117,3,8,17,15),1,true,algebra);
+        algebraTut.save();
+        Class algebraLect = new Class(Class.ClassType.Lecture,100, 50, new Date(117,3,8,17,15),new Date(117,3,8,19,15),1,true,algebra);
+        algebraLect.save();
+        Class dsTut = new Class(Class.ClassType.Class,100, 50, new Date(117,3,7,15,15),new Date(117,3,7,17,15),1,true,digitalSystems);
+        dsTut.save();
+        Class dsLect = new Class(Class.ClassType.Lecture,100, 50, new Date(117,3,6,15,15),new Date(117,3,6,17,15),1,true,digitalSystems);
+        dsLect.save();
+        Class gpLab = new Class(Class.ClassType.Lab,100, 50, new Date(117,3,8,8,15),new Date(117,3,8,10,15),1,true,graphProg);
+        gpLab.save();
+        Class dmTut = new Class(Class.ClassType.Class,100, 50, new Date(117,3,8,12,15),new Date(117,3,8,14,15),1,true,discreteMath);
+        dmTut.save();
+        Class dmLect = new Class(Class.ClassType.Lecture,100, 50, new Date(117,3,5,15,15),new Date(117,3,8,17,15),1,true,discreteMath);
+        dmLect.save();
 
-        Class c2 = new Class();
-        c2.Type = Class.ClassType.Lab;
-        c2.EndHour = new Date(1999, 12, 10);
-        c2.StartHour = new Date(1999, 12, 10);
-        c2.FreqInWeeks = 1;
-        c2.MaxScore = 100;
-        c2.MinPassScore = 50;
-        c2.Subject = s2;
-        c2.save();
-
-        Class d = new Class();
-        d.Type = Class.ClassType.Lecture;
-        d.EndHour = new Date(1996, 12, 10);
-        d.StartHour = new Date(1996, 12, 10);
-        d.FreqInWeeks = 1;
-        d.MaxScore = 100;
-        d.MinPassScore = 50;
-        d.Subject = s;
-        d.save();
-
-        Class e = new Class();
-        e.Type = Class.ClassType.Class;
-        e.EndHour = new Date(1996, 12, 10);
-        e.StartHour = new Date(1996, 12, 10);
-        e.FreqInWeeks = 1;
-        e.MaxScore = 100;
-        e.MinPassScore = 50;
-        e.Subject = s;
-        e.save();
-
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 15; i++) {
             Attendence a = new Attendence();
-            a.Class = c2;
-            a.PointsEarned = 200;
-            a.Date = new Date(0, 20, 9, d.StartHour.getHours()+i, d.StartHour.getMinutes()+i);
+            a.Class = epLab;
+            Calendar startDate = Calendar.getInstance();
+            startDate.setTime(epLab.StartHour);
+            startDate.add(Calendar.DAY_OF_YEAR, 7*i);
+            a.PointsEarned = i;
+            a.Date = startDate.getTime();
+            a.WasPresent = true;
+            a.save();
+        }
+
+        for (int i = 0; i < 15; i++) {
+            Attendence a = new Attendence();
+            a.Class = epLect;
+            Calendar startDate = Calendar.getInstance();
+            startDate.setTime(epLect.StartHour);
+            startDate.add(Calendar.DAY_OF_YEAR, 7*i);
+            a.PointsEarned = i;
+            a.Date = startDate.getTime();
+            a.WasPresent = false;
+            a.save();
+        }
+        for (int i = 0; i < 15; i++) {
+            Attendence a = new Attendence();
+            a.Class = epTut;
+            Calendar startDate = Calendar.getInstance();
+            startDate.setTime(epTut.StartHour);
+            startDate.add(Calendar.DAY_OF_YEAR, 7*i);
+            a.PointsEarned = i;
+            a.Date = startDate.getTime();
+            a.WasPresent = false;
+            a.save();
+        }
+        for (int i = 0; i < 15; i++) {
+            Attendence a = new Attendence();
+            a.Class = algebraTut;
+            Calendar startDate = Calendar.getInstance();
+            startDate.setTime(algebraTut.StartHour);
+            startDate.add(Calendar.DAY_OF_YEAR, 7*i);
+            a.PointsEarned = i;
+            a.Date = startDate.getTime();
+            a.WasPresent = false;
+            a.save();
+        }
+        for (int i = 0; i < 15; i++) {
+            Attendence a = new Attendence();
+            a.Class = algebraLect;
+            Calendar startDate = Calendar.getInstance();
+            startDate.setTime(algebraLect.StartHour);
+            startDate.add(Calendar.DAY_OF_YEAR, 7*i);
+            a.PointsEarned = i;
+            a.Date = startDate.getTime();
+            a.WasPresent = false;
+            a.save();
+        }
+        for (int i = 0; i < 15; i++) {
+            Attendence a = new Attendence();
+            a.Class = dsTut;
+            Calendar startDate = Calendar.getInstance();
+            startDate.setTime(dsTut.StartHour);
+            startDate.add(Calendar.DAY_OF_YEAR, 7*i);
+            a.PointsEarned = i;
+            a.Date = startDate.getTime();
+            a.WasPresent = false;
+            a.save();
+        }
+        for (int i = 0; i < 15; i++) {
+            Attendence a = new Attendence();
+            a.Class = dsLect;
+            Calendar startDate = Calendar.getInstance();
+            startDate.setTime(dsLect.StartHour);
+            startDate.add(Calendar.DAY_OF_YEAR, 7*i);
+            a.PointsEarned = i;
+            a.Date = startDate.getTime();
+            a.WasPresent = false;
+            a.save();
+        }
+        for (int i = 0; i < 15; i++) {
+            Attendence a = new Attendence();
+            a.Class = gpLab;
+            Calendar startDate = Calendar.getInstance();
+            startDate.setTime(gpLab.StartHour);
+            startDate.add(Calendar.DAY_OF_YEAR, 7*i);
+            a.PointsEarned = i;
+            a.Date = startDate.getTime();
+            a.WasPresent = false;
+            a.save();
+        }
+        for (int i = 0; i < 15; i++) {
+            Attendence a = new Attendence();
+            a.Class = dmTut;
+            Calendar startDate = Calendar.getInstance();
+            startDate.setTime(dmTut.StartHour);
+            startDate.add(Calendar.DAY_OF_YEAR, 7*i);
+            a.PointsEarned = i;
+            a.Date = startDate.getTime();
+            a.WasPresent = false;
+            a.save();
+        }
+        for (int i = 0; i < 15; i++) {
+            Attendence a = new Attendence();
+            a.Class = dmLect;
+            Calendar startDate = Calendar.getInstance();
+            startDate.setTime(dmLect.StartHour);
+            startDate.add(Calendar.DAY_OF_YEAR, 7*i);
+            a.PointsEarned = i;
+            a.Date = startDate.getTime();
             a.WasPresent = false;
             a.save();
         }
 
-        for (int i = 0; i < 20; i++) {
-            Attendence a = new Attendence();
-            a.Class = d;
-            a.PointsEarned = 200;
-            a.Date = new Date(0, 20, 9, d.StartHour.getHours()+i, d.StartHour.getMinutes()+i);
-            a.WasPresent = false;
-            a.save();
-        }
-        for (int i = 0; i < 20; i++) {
-            Attendence a = new Attendence();
-            a.Class = c;
-            a.PointsEarned = 200;
-            a.Date = new Date(120, 12, 1, c.StartHour.getHours()+i, c.StartHour.getMinutes()+i);
-            a.WasPresent = false;
-            a.save();
-        }
-        for (int i = 0; i < 20; i++) {
-            Attendence a = new Attendence();
-            a.Class = e;
-            a.PointsEarned = 200;
-            a.Date = new Date(90, 12, 1, e.StartHour.getHours()+i, e.StartHour.getMinutes()+i);
-            a.WasPresent = false;
-            a.save();
-        }
     }
 
     @Override

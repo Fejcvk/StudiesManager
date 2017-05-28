@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
@@ -13,8 +14,14 @@ import com.example.tomasz.studiesmenager.Model.Attendence;
 import com.example.tomasz.studiesmenager.R;
 
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.TimeZone;
+
+import static com.example.tomasz.studiesmenager.R.color.colorLab;
+import static com.example.tomasz.studiesmenager.R.color.colorLec;
+import static com.example.tomasz.studiesmenager.R.color.colorTut;
 
 
 /**
@@ -26,6 +33,13 @@ public class ScheduleAdapterCardView extends RecyclerView.Adapter<ScheduleAdapte
 
     // Provide a suitable constructor (depends on the kind of dataset)
     public ScheduleAdapterCardView(List<Attendence> al) {
+        Collections.sort(al, new Comparator<Attendence>() {
+            @Override
+            public int compare(Attendence o1, Attendence o2) {
+                return o1.Date.compareTo(o2.Date);
+            }
+        });
+
         mDataset = al;
     }
 
@@ -59,53 +73,30 @@ public class ScheduleAdapterCardView extends RecyclerView.Adapter<ScheduleAdapte
         // - replace the contents of the view with that element
         //holder.mTextView.setText(mDataset.get(position));
 
-        Attendence a = mDataset.get(position);
+        final Attendence a = mDataset.get(position);
         if (a == null) return;
         String classType = "";
-        int color = 0xffffffff;
+        int color = 0xff9365b8;
 
         switch(a.Class.Type) {
             case Lab:
                 classType = "Laboratorium";
-                color = 0xff909090;
+                color = 0xff9365b8;
                 break;
 
             case Class:
                 classType = "Ćwiczenia";
-                color = 0xffdeadbe;
+                color = 0xfff7da64;
                 break;
 
             case Lecture:
                 classType = "Wykład";
-                color = 0xffbeeffa;
+                color = 0xff54acd2;
                 break;
         }
-        /*
-        Attendence a = mDataset.get(position);
-        if (a == null) return;
-        String classType = "";
-        int color = 0xffffffff;
 
-        switch(a.Class.Type) {
-            case Lab:
-                classType = "Laboratorium";
-                color = 0xff909090;
-                break;
-
-            case Class:
-                classType = "Ćwiczenia";
-                color = 0xffdeadbe;
-                break;
-
-            case Lecture:
-                classType = "Wykład";
-                color = 0xffbeeffa;
-                break;
-        }
-         */
-
-        //holder.cv.setBackgroundColor(color);
-        //holder.classType.setText(classType);
+        holder.cardLinearLayout.setBackgroundColor(color);
+//        holder.classType.setText(classType);
         holder.title.setText(a.Class.Subject.Name);
 
         TimeZone tz = TimeZone.getDefault ();
@@ -133,6 +124,7 @@ public class ScheduleAdapterCardView extends RecyclerView.Adapter<ScheduleAdapte
         TextView title;
         TextView date;
         TextView time;
+        LinearLayout cardLinearLayout;
         //TextView att;
         TextView points;
         TextView classType;
@@ -144,6 +136,7 @@ public class ScheduleAdapterCardView extends RecyclerView.Adapter<ScheduleAdapte
             title = (TextView)itemView.findViewById(R.id.card_subject_title);
             date = (TextView)itemView.findViewById(R.id.card_subject_date);
             time = (TextView) itemView.findViewById(R.id.card_subject_time);
+            cardLinearLayout = (LinearLayout) itemView.findViewById(R.id.card_subject_bg);
             //att = (TextView) itemView.findViewById(R.id.card_subject_att); //+ %
             //points - not implemented
 

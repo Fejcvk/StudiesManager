@@ -11,14 +11,17 @@
 
 
     <LinearLayout
+        android:id="@+id/card_subject_bg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorTut"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/card_subject_date"
             android:layout_width="72dp"
             android:layout_height="72dp"
+            android:background="@android:color/background_light"
             android:gravity="center"
             android:text="15.05"
             android:textAlignment="center"
@@ -28,7 +31,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="?attr/colorButtonNormal"
             android:orientation="vertical">
 
             <TextView

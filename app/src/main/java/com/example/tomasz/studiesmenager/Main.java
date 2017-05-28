@@ -214,8 +214,48 @@ public class Main extends AppCompatActivity
             a.WasPresent = false;
             a.save();
         }
+
+        pieChart = (PieChart) findViewById(chart);
+        pieChart.setCenterTextOffset(0,200);
+        pieChart.setCenterTextSize(25);
+        pieChart.setCenterText("ALGEBRA");
+        pieChart.setCenterTextColor(Color.BLACK);
+        Description desc = pieChart.getDescription();
+        desc.setEnabled(false);
+        pieChart.getLegend().setWordWrapEnabled(true);
+
+        Legend l = pieChart.getLegend();
+
+        l.setPosition(Legend.LegendPosition.BELOW_CHART_CENTER);
+        l.setTextSize(20);
+        l.setExtra(colors, xData);
+        l.resetCustom();
+
+        pieChart.setHoleRadius(1);
+        pieChart.setDrawHoleEnabled(false);
+        //pieChart.setHoleColor(Color.argb(0,0,0,0));
+        pieChart.setRotationEnabled(false);
+        addDataSet(pieChart);
     }
 
+    private void addDataSet(PieChart pieChart) {
+        ArrayList<PieEntry> yEntrys = new ArrayList<>();
+        ArrayList<String> xEntrys = new ArrayList<>();
+        for (int i = 0; i<yData.length; i++){
+            yEntrys.add(new PieEntry(yData[i]));
+        }
+        for (int i = 0; i<xData.length; i++) {
+            xEntrys.add(xData[i]);
+        }
+        PieDataSet pieDataSet = new PieDataSet(yEntrys, "");
+        pieDataSet.setSliceSpace(2);
+        pieDataSet.setColors(colors);
+        pieDataSet.setValueTextSize(25);
+        PieData pieData = new PieData(pieDataSet);
+        pieChart.setData(pieData);
+
+        pieChart.invalidate();
+    }
 
     @Override
     public void onBackPressed() {

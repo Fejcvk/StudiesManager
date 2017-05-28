@@ -22,6 +22,7 @@ import com.example.tomasz.studiesmenager.Model.Subject;
 import com.example.tomasz.studiesmenager.Model.Class;
 import com.example.tomasz.studiesmenager.SubjectsListCardView.SubjectsActivity;
 import com.example.tomasz.studiesmenager.addView.addViewActivity;
+
 import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
@@ -32,6 +33,7 @@ import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
+import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
@@ -213,6 +215,52 @@ public class Main extends AppCompatActivity
             a.save();
         }
 
+        Subject s = new Subject();
+        s.Name = "Algebra";
+        s.save();
+
+        Class c = new Class();
+        c.Type = Class.ClassType.Lab;
+        c.EndHour = new Date(1996, 12, 10);
+        c.StartHour = new Date(1996, 12, 10);
+        c.FreqInWeeks = 1;
+        c.MaxScore = 100;
+        c.MinPassScore = 50;
+        c.Subject = s;
+        c.save();
+
+        Attendence a = new Attendence();
+        a.WasPresent = true;
+        a.PointsEarned = 0;
+        a.Class = c;
+        Calendar cal2 = Calendar.getInstance();
+        cal2.set(Calendar.YEAR, 1988);
+        cal2.set(Calendar.MONTH, Calendar.JANUARY);
+        cal2.set(Calendar.DAY_OF_MONTH, 1);
+        a.Date = cal2.getTime();
+        a.save();
+        Log.w("myapp--", a.getId().toString());
+        Attendence a2 = new Attendence();
+        a2.WasPresent = true;
+        a2.PointsEarned = 0;
+        a2.Class = c;
+        Calendar cal3 = Calendar.getInstance();
+        cal3.set(Calendar.YEAR, 1999);
+        cal3.set(Calendar.MONTH, Calendar.JANUARY);
+        cal3.set(Calendar.DAY_OF_MONTH, 1);
+        a2.Date = cal3.getTime();
+        a2.save();
+        Log.w("myapp--", a2.getId().toString());
+        //Push intent i alarmmanager
+
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent notificationIntent = new Intent("android.media.action.DISPLAY_NOTIFICATION");
+        notificationIntent.putExtra("Present",a.WasPresent);
+        DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(getApplicationContext());                ;
+        notificationIntent.putExtra("Date",dateFormat.format(a.Date).toString());
+        notificationIntent.putExtra("ID",a.getId());
+        notificationIntent.addCategory("android.intent.category.DEFAULT");
+
         pieChart = (PieChart) findViewById(chart);
         pieChart.setCenterTextOffset(0,200);
         pieChart.setCenterTextSize(25);
@@ -221,7 +269,6 @@ public class Main extends AppCompatActivity
         Description desc = pieChart.getDescription();
         desc.setEnabled(false);
         pieChart.getLegend().setWordWrapEnabled(true);
-
 
         Legend l = pieChart.getLegend();
 

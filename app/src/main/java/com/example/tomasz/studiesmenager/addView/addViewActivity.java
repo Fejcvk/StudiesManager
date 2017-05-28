@@ -22,6 +22,7 @@ import com.example.tomasz.studiesmenager.Model.Class;
 import com.example.tomasz.studiesmenager.R;
 import com.example.tomasz.studiesmenager.SubjectsListCardView.SubjectsActivity;
 
+import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Random;
 
@@ -162,8 +163,9 @@ public class addViewActivity extends AppCompatActivity {
 
                 AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
                 Intent notificationIntent = new Intent("android.media.action.DISPLAY_NOTIFICATION");
-                notificationIntent.putExtra("Subject",attendence.Class.Subject.toString());
-                notificationIntent.putExtra("Date",attendence.Date.toString());
+                notificationIntent.putExtra("Subject",attendence.Class.Subject.Name.toString());
+                DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(getApplicationContext());                ;
+                notificationIntent.putExtra("Date",dateFormat.format(attendence.Date).toString());
                 notificationIntent.putExtra("ID",attendence.getId());
                 notificationIntent.addCategory("android.intent.category.DEFAULT");
                 PendingIntent broadcast = PendingIntent.getBroadcast(this, new Random().nextInt(3929), notificationIntent, PendingIntent.FLAG_ONE_SHOT);
@@ -213,8 +215,9 @@ public class addViewActivity extends AppCompatActivity {
 
                 AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
                 Intent notificationIntent = new Intent("android.media.action.DISPLAY_NOTIFICATION");
-                notificationIntent.putExtra("Subject",attendence.Class.Subject.toString());
-                notificationIntent.putExtra("Date",attendence.Date.toString());
+                notificationIntent.putExtra("Subject",attendence.Class.Subject.Name.toString());
+                DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(getApplicationContext());                ;
+                notificationIntent.putExtra("Date",dateFormat.format(attendence.Date).toString());
                 notificationIntent.putExtra("ID",attendence.getId());
                 notificationIntent.addCategory("android.intent.category.DEFAULT");
                 PendingIntent broadcast = PendingIntent.getBroadcast(this, new Random().nextInt(3929), notificationIntent, PendingIntent.FLAG_ONE_SHOT);
@@ -264,8 +267,9 @@ public class addViewActivity extends AppCompatActivity {
 
                 AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
                 Intent notificationIntent = new Intent("android.media.action.DISPLAY_NOTIFICATION");
-                notificationIntent.putExtra("Subject",attendence.Class.Subject.toString());
-                notificationIntent.putExtra("Date",attendence.Date.toString());
+                notificationIntent.putExtra("Subject",attendence.Class.Subject.Name.toString());
+                DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(getApplicationContext());                ;
+                notificationIntent.putExtra("Date",dateFormat.format(attendence.Date).toString());
                 notificationIntent.putExtra("ID",attendence.getId());
                 notificationIntent.addCategory("android.intent.category.DEFAULT");
                 PendingIntent broadcast = PendingIntent.getBroadcast(this, new Random().nextInt(3929), notificationIntent, PendingIntent.FLAG_ONE_SHOT);

@@ -64,7 +64,7 @@ public class TimePickerFragment extends DialogFragment
         if(textView == textViewLE)
             labEndCalendar = calendar;
         TextView textViewTS = (TextView) getActivity().findViewById(R.id.startHourTxtTut);
-        TextView textViewTE = (TextView) getActivity().findViewById(R.id.endHourTxtLab);
+        TextView textViewTE = (TextView) getActivity().findViewById(R.id.endHourTxtTut);
         TextView textViewLeS = (TextView) getActivity().findViewById(R.id.startHourTxtLec);
         TextView textViewLeE = (TextView) getActivity().findViewById(R.id.endHourTxtLec);
         if(textView == textViewTS)

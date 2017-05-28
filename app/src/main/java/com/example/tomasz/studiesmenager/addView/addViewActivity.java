@@ -141,7 +141,6 @@ public class addViewActivity extends AppCompatActivity {
             lab.StartHour = labStartCalendar.getTime();
             lab.EndHour = labEndCalendar.getTime();
             final RadioButton onceButton = (RadioButton) findViewById(R.id.lab_radio_once);
-            final RadioButton twiceButton = (RadioButton) findViewById(R.id.lab_radio_twice);
             if (onceButton.isChecked())
                 lab.FreqInWeeks = 1;
             else
@@ -180,7 +179,6 @@ public class addViewActivity extends AppCompatActivity {
             tut.StartHour = tutStartCalendar.getTime();
             tut.EndHour = tutEndCalendar.getTime();
             final RadioButton onceButton = (RadioButton)findViewById(R.id.tut_radio_once);
-            final RadioButton twiceButton = (RadioButton)findViewById(R.id.tut_radio_twice);
             if(onceButton.isChecked())
                 tut.FreqInWeeks = 1;
             else

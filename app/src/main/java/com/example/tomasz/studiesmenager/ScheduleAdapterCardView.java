@@ -16,6 +16,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.TimeZone;
 
+
 /**
  * Created by R50 on 2017-05-27.
  */
@@ -79,6 +80,29 @@ public class ScheduleAdapterCardView extends RecyclerView.Adapter<ScheduleAdapte
                 color = 0xffbeeffa;
                 break;
         }
+        /*
+        Attendence a = mDataset.get(position);
+        if (a == null) return;
+        String classType = "";
+        int color = 0xffffffff;
+
+        switch(a.Class.Type) {
+            case Lab:
+                classType = "Laboratorium";
+                color = 0xff909090;
+                break;
+
+            case Class:
+                classType = "Ćwiczenia";
+                color = 0xffdeadbe;
+                break;
+
+            case Lecture:
+                classType = "Wykład";
+                color = 0xffbeeffa;
+                break;
+        }
+         */
 
         //holder.cv.setBackgroundColor(color);
         //holder.classType.setText(classType);

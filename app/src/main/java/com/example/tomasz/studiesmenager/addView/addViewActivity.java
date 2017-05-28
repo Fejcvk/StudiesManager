@@ -257,6 +257,7 @@ public class addViewActivity extends AppCompatActivity {
             {
                 Attendence attendence = new Attendence();
                 attendence.Date = lecStartCalendar.getTime();
+                System.out.println(attendence.Date);
                 attendence.PointsEarned = 0;
                 attendence.WasPresent = false;
                 attendence.Class = lec;
@@ -274,6 +275,7 @@ public class addViewActivity extends AppCompatActivity {
                 prevCalendar = lecStartCalendar;
                 if(lec.FreqInWeeks == 1) {
                     lecStartCalendar.add(Calendar.DAY_OF_YEAR, +7);
+                    System.out.println(lecStartCalendar.getTime());
                 }
                 else
                 {
@@ -283,6 +285,6 @@ public class addViewActivity extends AppCompatActivity {
         }
         Intent intent = new Intent(this, SubjectsActivity.class);
         startActivity(intent);
-
+        this.finish();
     }
 }

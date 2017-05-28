@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.example.tomasz.studiesmenager.Model.Attendence;
 
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
@@ -97,7 +99,10 @@ public class ScheduleAdapterCardView extends RecyclerView.Adapter<ScheduleAdapte
         c.setTime(a.Date);
         h.setTime(a.Class.StartHour);
         //int cDay = c.get(Calendar.DAY_OF_MONTH);
-        holder.date.setText(Integer.toString(c.get(Calendar.DAY_OF_MONTH)) + "." + Integer.toString(c.get(Calendar.MONTH)));
+        holder.date.setText(Integer.toString(c.get(Calendar.DAY_OF_MONTH)));
+
+        String[] months = {"STY", "LUT", "MAR", "KWI", "MAJ", "CZE", "LIP", "SIE", "WRZ", "PAZ", "LIS", "GRU"};
+        holder.month.setText(months[c.get(Calendar.MONTH)]);
         holder.time.setText(Integer.toString(h.get(Calendar.HOUR)) + ":" + Integer.toString(h.get(Calendar.MINUTE)));
 
 
@@ -115,6 +120,7 @@ public class ScheduleAdapterCardView extends RecyclerView.Adapter<ScheduleAdapte
         CardView cv;
         TextView title;
         TextView date;
+        TextView month;
         TextView time;
         LinearLayout cardLinearLayout;
         //TextView att;
@@ -127,6 +133,7 @@ public class ScheduleAdapterCardView extends RecyclerView.Adapter<ScheduleAdapte
             cv = (CardView)itemView.findViewById(R.id.card_view_template);
             title = (TextView)itemView.findViewById(R.id.card_subject_title);
             date = (TextView)itemView.findViewById(R.id.card_subject_date);
+            month = (TextView)itemView.findViewById(R.id.card_subject_month);
             time = (TextView) itemView.findViewById(R.id.card_subject_time);
             cardLinearLayout = (LinearLayout) itemView.findViewById(R.id.card_subject_bg);
             //att = (TextView) itemView.findViewById(R.id.card_subject_att); //+ %

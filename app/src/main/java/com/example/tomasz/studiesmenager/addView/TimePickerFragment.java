@@ -14,6 +14,9 @@ import com.example.tomasz.studiesmenager.R;
 
 import java.util.Calendar;
 
+import static com.example.tomasz.studiesmenager.addView.DatePickerFragment.day_;
+import static com.example.tomasz.studiesmenager.addView.DatePickerFragment.month_;
+import static com.example.tomasz.studiesmenager.addView.DatePickerFragment.year_;
 import static com.example.tomasz.studiesmenager.addView.addViewActivity.labEndCalendar;
 import static com.example.tomasz.studiesmenager.addView.addViewActivity.labStartCalendar;
 import static com.example.tomasz.studiesmenager.addView.addViewActivity.lecEndCalendar;
@@ -56,7 +59,7 @@ public class TimePickerFragment extends DialogFragment
         calendar = Calendar.getInstance();
         TextView textView = (TextView) Editview;
         textView.setText(hour+":"+minute);
-        calendar.set(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH),hour,minute);
+        calendar.set(calendar.get(Calendar.YEAR),month_,day_,hour,minute);
         TextView textViewLS = (TextView) getActivity().findViewById(R.id.startHourTxtLab);
         if(textView == textViewLS)
             labStartCalendar = calendar;

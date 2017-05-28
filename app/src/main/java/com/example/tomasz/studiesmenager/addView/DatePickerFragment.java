@@ -26,6 +26,9 @@ public class DatePickerFragment extends DialogFragment
 
     View EditView;
     Calendar calendar;
+    static int year_;
+    static  int month_;
+    static int day_;
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the current date as the default date in the picker
@@ -42,6 +45,9 @@ public class DatePickerFragment extends DialogFragment
         EditView = v;
     }
     public void onDateSet(DatePicker view, int year, int month, int day) {
+        year_ = year;
+        month_ = month;
+        day_ = day;
         TextView textView = (TextView) EditView;
         month+=1;
         textView.setText(day + " - " + month + " - " + year);

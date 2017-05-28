@@ -52,8 +52,5 @@ public class ScheduleViewActivity extends AppCompatActivity {
             else break;
         }
         mLayoutManager.scrollToPosition(count);
-
     }
-
-
 }

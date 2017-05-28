@@ -9,7 +9,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.tomasz.studiesmenager.Model.Attendence;
 import com.example.tomasz.studiesmenager.Model.Subject;
@@ -33,14 +38,15 @@ public class SubjectDetailActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                Snackbar.make(view, "Tu będzie edycja jakoś", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-            }
-        });
+
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+////                Snackbar.make(view, "Tu będzie edycja jakoś", Snackbar.LENGTH_LONG)
+////                        .setAction("Action", null).show();
+//            }
+//        });
 
         Intent intent = getIntent();
 
@@ -56,9 +62,15 @@ public class SubjectDetailActivity extends AppCompatActivity {
         List<Attendence> tmp = new ArrayList<Attendence>();
         for(Attendence a : pastAttendences)
         {
+            Log.i("TAG", a.toString());
+            Log.i("TAG", a.Date.toString());
+
+            Log.i("TAG", new Date().toString());
+
             if (a.Date.before(new Date()))
             {
                 tmp.add(a);
+                Log.i("TAG", a.toString());
             }
         }
         pastAttendences = tmp;
@@ -76,6 +88,16 @@ public class SubjectDetailActivity extends AppCompatActivity {
         RVAdapter rva = new RVAdapter(pastAttendences, rv, getApplicationContext());
         rv.setAdapter(rva);
     }
+@Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.subject_detail_menu, menu);
+        return true;
+    }
+    @Override
+    public boolean onContextItemSelected(MenuItem item){
+          return true;
+      }
 
 }
 

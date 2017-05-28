@@ -213,7 +213,6 @@ public class addViewActivity extends AppCompatActivity {
             lec = new Class();
             lec.Type = Lecture;
             final EditText hScore = (EditText)findViewById(R.id.maxScoreLec);
-            totalScore += Integer.parseInt(hScore.getText().toString());
             lec.MaxScore = Integer.parseInt(hScore.getText().toString());
             final EditText pScore = (EditText)findViewById(R.id.passScoreLec);
             lec.MinPassScore = Integer.parseInt((pScore.getText().toString()));
@@ -247,6 +246,7 @@ public class addViewActivity extends AppCompatActivity {
                 attendence.PointsEarned = 0;
                 attendence.WasPresent = false;
                 attendence.Class = lec;
+                System.out.println(lecStartCalendar.getTime());
                 attendence.save();
             }
         }

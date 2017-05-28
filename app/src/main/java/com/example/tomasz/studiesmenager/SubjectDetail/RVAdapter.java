@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -58,22 +59,21 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AttendenceViewHold
         if (a == null) return;
         String classType = "";
         int color = 0xffffffff;
-
         switch(a.Class.Type)
         {
             case Lab:
                 classType = "Laboratorium";
-                color = 0xff909090;
+                color = 0xff9365b8;
                 break;
 
             case Class:
                 classType = "Ćwiczenia";
-                color = 0xffdeadbe;
+                color = 0xfff7da64;
                 break;
 
             case Lecture:
                 classType = "Wykład";
-                color = 0xffbeeffa;
+                color = 0xff54acd2;
                 break;
         }
 
@@ -97,6 +97,9 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.AttendenceViewHold
 
                     }
                     notifyItemChanged(holder.getAdapterPosition());
+
+                    InputMethodManager imm = (InputMethodManager)ctx.getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
                 }
             });
         } else {

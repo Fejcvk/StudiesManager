@@ -64,7 +64,7 @@ public class SubjectDetailActivity extends AppCompatActivity {
         pastAttendences = tmp;
         Collections.sort(pastAttendences, new Comparator<Attendence>(){
             public int compare(Attendence s1, Attendence s2) {
-                return s1.Date.compareTo(s2.Date);
+                return s2.Date.compareTo(s1.Date);
             }
         });
 
@@ -73,7 +73,7 @@ public class SubjectDetailActivity extends AppCompatActivity {
         LinearLayoutManager llm = new LinearLayoutManager(getApplicationContext());
         rv.setLayoutManager(llm);
 
-        RVAdapter rva = new RVAdapter(pastAttendences, rv);
+        RVAdapter rva = new RVAdapter(pastAttendences, rv, getApplicationContext());
         rv.setAdapter(rva);
     }
 

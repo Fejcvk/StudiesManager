@@ -28,6 +28,11 @@ public class PushReceiver extends BroadcastReceiver{
         yesReceive2.setAction(AppConstant.STOP_ACTION);
         PendingIntent pendingIntentYes2 = PendingIntent.getBroadcast(context, new Random().nextInt(3929), yesReceive2, PendingIntent.FLAG_ONE_SHOT);
 
+        Intent yesReceive3 = new Intent();
+        yesReceive3.putExtra("ID",intent.getLongExtra("ID",0));
+        yesReceive3.setAction(AppConstant.GRADE_ACTION);
+        PendingIntent pendingIntentYes3 = PendingIntent.getBroadcast(context, new Random().nextInt(3929), yesReceive3, PendingIntent.FLAG_ONE_SHOT);
+
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
         stackBuilder.addParentStack(DismissActivity.class);
         stackBuilder.addNextIntent(notificationIntent);
@@ -42,6 +47,7 @@ public class PushReceiver extends BroadcastReceiver{
                 .setVisibility(Notification.VISIBILITY_PUBLIC)
                 .addAction(R.drawable.tick,"Obecny",pendingIntentYes)
                 .addAction(R.drawable.cross,"Nieobecny",pendingIntentYes2)
+                .addAction(R.drawable.grade,"PKT",pendingIntentYes3)
                 .setFullScreenIntent(pendingIntent,true)
                 .setColor(Color.WHITE)
                 .build();

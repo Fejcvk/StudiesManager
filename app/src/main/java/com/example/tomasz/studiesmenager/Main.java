@@ -14,6 +14,7 @@ import com.example.tomasz.studiesmenager.Model.Attendence;
 import com.example.tomasz.studiesmenager.Model.Subject;
 import com.example.tomasz.studiesmenager.Model.Class;
 import com.example.tomasz.studiesmenager.SubjectsListCardView.SubjectsActivity;
+import com.example.tomasz.studiesmenager.addView.addViewActivity;
 
 import java.util.Date;
 
@@ -153,7 +154,7 @@ public class Main extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        Intent intent;
+        Intent intent = null;
         if (id == R.id.Subjects) {
             intent = new Intent(this, SubjectsActivity.class);
         }
@@ -163,9 +164,9 @@ public class Main extends AppCompatActivity
         else if (id == R.id.Stats){
             intent = new Intent(this, SubjectsActivity.class);
         }
-        else{// if (id == R.id.AddSubject){
-            intent = new Intent(this, SubjectsActivity.class);
-        }
+        else if (id == R.id.AddSubject) {
+                intent = new Intent(this, addViewActivity.class);
+            }
         startActivity(intent);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

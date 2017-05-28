@@ -17,7 +17,7 @@
             android:value="manager.db" />
         <meta-data
             android:name="VERSION"
-            android:value="5" />
+            android:value="6" />
 
         <meta-data
             android:name="QUERY_LOG"
@@ -42,7 +42,9 @@
             android:label="@string/title_activity_subjects"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".addView.addViewActivity" />
+        <activity android:name=".addView.addViewActivity"
+            android:label="@string/title_activity_subject_detail"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

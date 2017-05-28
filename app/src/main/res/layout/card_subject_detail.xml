@@ -17,30 +17,26 @@
             android:padding="16dp"
             >
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/class_type_photo"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginRight="16dp"
-                />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/card_subject_type_name"
-                android:layout_toRightOf="@+id/class_type_photo"
                 android:layout_alignParentTop="true"
-                android:textSize="30sp"
-                />
+                android:textSize="20sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/card_subject_date"
-                android:layout_toRightOf="@+id/class_type_photo"
                 android:layout_below="@+id/card_subject_type_name"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:id="@+id/was_there_photo"
+                android:layout_alignParentEnd="true"
                 />
         </RelativeLayout>
         <LinearLayout
@@ -56,7 +52,9 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="start"
                 android:gravity="center"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:inputType="number"
+                android:hint="Podaj ilość punktów"/>
             <Button
                 android:id="@+id/btnPresent"
                 android:layout_width="wrap_content"

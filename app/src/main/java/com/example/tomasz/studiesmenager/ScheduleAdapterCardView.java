@@ -93,8 +93,8 @@ public class ScheduleAdapterCardView extends RecyclerView.Adapter<ScheduleAdapte
 //        holder.classType.setText(classType);
         holder.title.setText(a.Class.Subject.Name);
 
-        TimeZone tz = TimeZone.getDefault ();
-        Calendar c = Calendar.getInstance (tz);
+        TimeZone tz = TimeZone.getDefault();
+        Calendar c = Calendar.getInstance(tz);
         Calendar h = Calendar.getInstance(tz);
         c.setTime(a.Date);
         h.setTime(a.Class.StartHour);

@@ -1,5 +1,8 @@
 package com.example.tomasz.studiesmenager.addView;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -20,6 +23,7 @@ import com.example.tomasz.studiesmenager.R;
 import com.example.tomasz.studiesmenager.SubjectsListCardView.SubjectsActivity;
 
 import java.util.Calendar;
+import java.util.Random;
 
 import static com.example.tomasz.studiesmenager.Model.Class.ClassType.Lab;
 import static com.example.tomasz.studiesmenager.Model.Class.ClassType.Class;
@@ -33,6 +37,7 @@ public class addViewActivity extends AppCompatActivity {
     public static Calendar labStartCalendar;
     public static Calendar labEndCalendar;
     public static Calendar tutStartCalendar;
+    public static Calendar prevCalendar;
     public static Calendar tutEndCalendar;
     public static Calendar lecStartCalendar;
     public static Calendar lecEndCalendar;
@@ -149,17 +154,29 @@ public class addViewActivity extends AppCompatActivity {
             lab.save();
             for (int i = 0; i < 15 / lab.FreqInWeeks; i++) {
                 Attendence attendence = new Attendence();
-                if (lab.FreqInWeeks == 1) {
-                    attendence.Date = labStartCalendar.getTime();
-                    labStartCalendar.add(Calendar.DAY_OF_YEAR, +7);
-                } else {
-                    attendence.Date = labStartCalendar.getTime();
-                    labStartCalendar.add(Calendar.DAY_OF_YEAR, +14);
-                }
+                attendence.Date = labStartCalendar.getTime();
                 attendence.PointsEarned = 0;
                 attendence.WasPresent = false;
                 attendence.Class = lab;
                 attendence.save();
+
+                AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                Intent notificationIntent = new Intent("android.media.action.DISPLAY_NOTIFICATION");
+                notificationIntent.putExtra("Subject",attendence.Class.Subject.toString());
+                notificationIntent.putExtra("Date",attendence.Date.toString());
+                notificationIntent.putExtra("ID",attendence.getId());
+                notificationIntent.addCategory("android.intent.category.DEFAULT");
+                PendingIntent broadcast = PendingIntent.getBroadcast(this, new Random().nextInt(3929), notificationIntent, PendingIntent.FLAG_ONE_SHOT);
+
+                alarmManager.setExact(AlarmManager.RTC_WAKEUP, labStartCalendar.getTimeInMillis(), broadcast);
+                prevCalendar = labStartCalendar;
+                if(lab.FreqInWeeks == 1) {
+                    labStartCalendar.add(Calendar.DAY_OF_YEAR, +7);
+                }
+                else
+                {
+                    labStartCalendar.add(Calendar.DAY_OF_YEAR, +14);
+                }
             }
         }
         if(tutPressed)
@@ -184,22 +201,33 @@ public class addViewActivity extends AppCompatActivity {
                 tut.ShowNotifications = false;
             tut.Subject = subject;
             tut.save();
+            prevCalendar = tutStartCalendar;
             for(int i =0;i<15/tut.FreqInWeeks;i++)
             {
                 Attendence attendence = new Attendence();
-                if(tut.FreqInWeeks == 1) {
-                    attendence.Date = tutStartCalendar.getTime();
-                    tutStartCalendar.add(Calendar.DAY_OF_YEAR, +7);
-                }
-                else
-                {
-                    attendence.Date = tutStartCalendar.getTime();
-                    tutStartCalendar.add(Calendar.DAY_OF_YEAR, +14);
-                }
+                attendence.Date = tutStartCalendar.getTime();
                 attendence.PointsEarned = 0;
                 attendence.WasPresent = false;
                 attendence.Class = tut;
                 attendence.save();
+
+                AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                Intent notificationIntent = new Intent("android.media.action.DISPLAY_NOTIFICATION");
+                notificationIntent.putExtra("Subject",attendence.Class.Subject.toString());
+                notificationIntent.putExtra("Date",attendence.Date.toString());
+                notificationIntent.putExtra("ID",attendence.getId());
+                notificationIntent.addCategory("android.intent.category.DEFAULT");
+                PendingIntent broadcast = PendingIntent.getBroadcast(this, new Random().nextInt(3929), notificationIntent, PendingIntent.FLAG_ONE_SHOT);
+
+                alarmManager.setExact(AlarmManager.RTC_WAKEUP, tutStartCalendar.getTimeInMillis(), broadcast);
+                prevCalendar = tutStartCalendar;
+                if(tut.FreqInWeeks == 1) {
+                    tutStartCalendar.add(Calendar.DAY_OF_YEAR, +7);
+                }
+                else
+                {
+                    tutStartCalendar.add(Calendar.DAY_OF_YEAR, +14);
+                }
             }
         }
         if(lecPressed)
@@ -228,20 +256,29 @@ public class addViewActivity extends AppCompatActivity {
             for(int i =0;i<15/lec.FreqInWeeks;i++)
             {
                 Attendence attendence = new Attendence();
+                attendence.Date = lecStartCalendar.getTime();
+                attendence.PointsEarned = 0;
+                attendence.WasPresent = false;
+                attendence.Class = lec;
+                attendence.save();
+
+                AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                Intent notificationIntent = new Intent("android.media.action.DISPLAY_NOTIFICATION");
+                notificationIntent.putExtra("Subject",attendence.Class.Subject.toString());
+                notificationIntent.putExtra("Date",attendence.Date.toString());
+                notificationIntent.putExtra("ID",attendence.getId());
+                notificationIntent.addCategory("android.intent.category.DEFAULT");
+                PendingIntent broadcast = PendingIntent.getBroadcast(this, new Random().nextInt(3929), notificationIntent, PendingIntent.FLAG_ONE_SHOT);
+
+                alarmManager.setExact(AlarmManager.RTC_WAKEUP, lecStartCalendar.getTimeInMillis(), broadcast);
+                prevCalendar = lecStartCalendar;
                 if(lec.FreqInWeeks == 1) {
-                    attendence.Date = lecStartCalendar.getTime();
                     lecStartCalendar.add(Calendar.DAY_OF_YEAR, +7);
                 }
                 else
                 {
-                    attendence.Date = lecStartCalendar.getTime();
                     lecStartCalendar.add(Calendar.DAY_OF_YEAR, +14);
                 }
-                attendence.PointsEarned = 0;
-                attendence.WasPresent = false;
-                attendence.Class = lec;
-                System.out.println(lecStartCalendar.getTime());
-                attendence.save();
             }
         }
         Intent intent = new Intent(this, SubjectsActivity.class);

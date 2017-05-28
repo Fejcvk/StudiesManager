@@ -9,9 +9,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
-//import com.example.tomasz.studiesmenager.Model.Attendence;
 import com.example.tomasz.studiesmenager.Model.Attendence;
-import com.example.tomasz.studiesmenager.R;
+
 
 import java.util.Calendar;
 import java.util.Collections;

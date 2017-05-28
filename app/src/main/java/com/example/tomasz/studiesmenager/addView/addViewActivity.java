@@ -281,8 +281,6 @@ public class addViewActivity extends AppCompatActivity {
                 }
             }
         }
-        Intent intent = new Intent(this, SubjectsActivity.class);
-        startActivity(intent);
-
+        this.finish();
     }
 }

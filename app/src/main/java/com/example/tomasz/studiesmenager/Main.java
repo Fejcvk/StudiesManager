@@ -22,6 +22,7 @@ import com.example.tomasz.studiesmenager.Model.Subject;
 import com.example.tomasz.studiesmenager.Model.Class;
 import com.example.tomasz.studiesmenager.SubjectsListCardView.SubjectsActivity;
 import com.example.tomasz.studiesmenager.addView.addViewActivity;
+
 import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
@@ -33,6 +34,7 @@ import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
+import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -224,7 +226,6 @@ public class Main extends AppCompatActivity
         desc.setEnabled(false);
         pieChart.getLegend().setWordWrapEnabled(true);
 
-
         Legend l = pieChart.getLegend();
         l.setPosition(Legend.LegendPosition.BELOW_CHART_CENTER);
         l.setTextSize(20);
@@ -266,7 +267,6 @@ public class Main extends AppCompatActivity
 
         pieChart.invalidate();
     }
-
 
     @Override
     public void onBackPressed() {

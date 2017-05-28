@@ -27,8 +27,8 @@
 
         <activity android:name=".Main">
         </activity>
-        <activity android:name=".DismissActivity" />
-
+        <activity android:name=".DismissActivity"
+            android:theme="@android:style/Theme.Dialog"/>
         <receiver android:name=".NotificationReceiver">
             <intent-filter>
                 <action android:name="YES_ACTION" />

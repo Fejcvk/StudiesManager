@@ -9,7 +9,9 @@ import android.content.Intent;
 import android.provider.Settings;
 import android.text.InputType;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.tomasz.studiesmenager.Model.Attendence;
 
@@ -28,7 +30,8 @@ public class NotificationReceiver extends BroadcastReceiver {
             pastAttendences.save();
             NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
             manager.cancel((int)intent.getLongExtra("ID",0));
-
+            Toast.makeText(context, "Obecność zapisana",
+                    Toast.LENGTH_LONG).show();
         }
         else if (AppConstant.STOP_ACTION.equals(action)) {
             Attendence pastAttendences = Attendence.findById(Attendence.class,intent.getLongExtra("ID",0));
@@ -36,13 +39,20 @@ public class NotificationReceiver extends BroadcastReceiver {
             pastAttendences.save();
             NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
             manager.cancel((int)intent.getLongExtra("ID",0));
+            Toast.makeText(context, "Nieobecność zapisana",
+                    Toast.LENGTH_LONG).show();
         }
 
         else if(AppConstant.GRADE_ACTION.equals(action)) {
             Attendence pastAttendences = Attendence.findById(Attendence.class,intent.getLongExtra("ID",0));
             pastAttendences.WasPresent = true;
             pastAttendences.save();
-            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            Intent intentone = new Intent(context.getApplicationContext(), DismissActivity.class);
+            intentone.putExtra("ID",pastAttendences.getId());
+            intentone.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            Toast.makeText(context, "Punkty zapisane",
+                    Toast.LENGTH_LONG).show();
+            context.startActivity(intentone);
         }
     }
 }

@@ -25,13 +25,25 @@
             android:name="DOMAIN_PACKAGE_NAME"
             android:value="com.example.tomasz.studiesmenager" />
 
-        <activity android:name=".Main">
+        <activity android:name=".Main"></activity>
+        <activity android:name=".DismissActivity" />
+        <receiver android:name=".NotificationReceiver">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="YES_ACTION"/>
+                <action android:name="STOP_ACTION"/>
+                <action android:name="GRADE_ACTION"/>
             </intent-filter>
-        </activity>
+        </receiver>
+        <receiver
+            android:name=".PushReceiver"
+            android:theme="@android:style/Theme.NoDisplay">
+            <intent-filter>
+                <action android:name="android.media.action.DISPLAY_NOTIFICATION"
+                    android:theme="@android:style/Theme.NoDisplay"/>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+
         <activity
             android:name=".SubjectDetail.SubjectDetailActivity"
             android:label="@string/title_activity_subject_detail"

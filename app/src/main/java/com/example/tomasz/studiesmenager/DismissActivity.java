@@ -15,8 +15,6 @@ public class DismissActivity extends Activity {
     @Override
     protected void onStart() {
         super.onStart();
-        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        manager.cancel(getIntent().getIntExtra(NOTIFICATION_ID,-1));
 
     }
     public static PendingIntent getDismissIntent(int notificationId, Context context) {

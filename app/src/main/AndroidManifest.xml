@@ -21,6 +21,7 @@
             <intent-filter>
                 <action android:name="YES_ACTION"/>
                 <action android:name="STOP_ACTION"/>
+                <action android:name="GRADE_ACTION"/>
             </intent-filter>
         </receiver>
         <receiver

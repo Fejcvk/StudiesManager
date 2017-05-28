@@ -6,6 +6,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.provider.Settings;
 import android.util.Log;
+
+import com.example.tomasz.studiesmenager.Model.Attendence;
+
 /**
  * Created by pmoren on 27.05.2017.
  */

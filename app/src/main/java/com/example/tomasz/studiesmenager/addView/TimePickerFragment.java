@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
+
 import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.TextView;
@@ -12,11 +13,11 @@ import android.widget.TimePicker;
 
 import com.example.tomasz.studiesmenager.R;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
-import static com.example.tomasz.studiesmenager.addView.DatePickerFragment.day_;
-import static com.example.tomasz.studiesmenager.addView.DatePickerFragment.month_;
-import static com.example.tomasz.studiesmenager.addView.DatePickerFragment.year_;
 import static com.example.tomasz.studiesmenager.addView.addViewActivity.labEndCalendar;
 import static com.example.tomasz.studiesmenager.addView.addViewActivity.labStartCalendar;
 import static com.example.tomasz.studiesmenager.addView.addViewActivity.lecEndCalendar;
@@ -58,25 +59,52 @@ public class TimePickerFragment extends DialogFragment
         minute = minutes;
         calendar = Calendar.getInstance();
         TextView textView = (TextView) Editview;
-        textView.setText(hour+":"+minute);
-        calendar.set(calendar.get(Calendar.YEAR),month_,day_,hour,minute);
-        TextView textViewLS = (TextView) getActivity().findViewById(R.id.startHourTxtLab);
-        if(textView == textViewLS)
-            labStartCalendar = calendar;
-        TextView textViewLE = (TextView) getActivity().findViewById(R.id.endHourTxtLab);
-        if(textView == textViewLE)
-            labEndCalendar = calendar;
+        java.text.DateFormat df = new SimpleDateFormat("HH:mm");
+        calendar.set(calendar.MINUTE, minute);
+        calendar.set(calendar.HOUR_OF_DAY, hour);
+        String myTime = calendar.get(calendar.HOUR_OF_DAY) + ":" + calendar.get(calendar.MINUTE);
+        try {
+            Date time = df.parse(myTime);
+            System.out.println("*********************************"+df.format(time));
+            textView.setText(df.format(time));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         TextView textViewTS = (TextView) getActivity().findViewById(R.id.startHourTxtTut);
         TextView textViewTE = (TextView) getActivity().findViewById(R.id.endHourTxtTut);
         TextView textViewLeS = (TextView) getActivity().findViewById(R.id.startHourTxtLec);
         TextView textViewLeE = (TextView) getActivity().findViewById(R.id.endHourTxtLec);
+        TextView textViewLS = (TextView) getActivity().findViewById(R.id.startHourTxtLab);
+        TextView textViewLE = (TextView) getActivity().findViewById(R.id.endHourTxtLab);
+
+        if(textView == textViewLS) {
+            labStartCalendar.set(labStartCalendar.MINUTE, minute);
+            labStartCalendar.set(labStartCalendar.HOUR_OF_DAY,hour);
+        }
+        if(textView == textViewLE)
+        {
+            labEndCalendar.set(labEndCalendar.MINUTE, minute);
+            labEndCalendar.set(labEndCalendar.HOUR_OF_DAY,hour);
+        }
         if(textView == textViewTS)
-            tutStartCalendar = calendar;
-        if(textView == textViewTE)
-            tutEndCalendar = calendar;
+        {
+            tutStartCalendar.set(tutStartCalendar.MINUTE, minute);
+            tutStartCalendar.set(tutStartCalendar.HOUR_OF_DAY, hour);
+        }
+       if(textView == textViewTE)
+       {
+           tutEndCalendar.set(tutEndCalendar.MINUTE, minute);
+           tutEndCalendar.set(tutEndCalendar.HOUR_OF_DAY, hour);
+       }
         if(textView == textViewLeS)
-            lecStartCalendar = calendar;
+        {
+            lecStartCalendar.set(lecStartCalendar.MINUTE, minute);
+            lecStartCalendar.set(lecStartCalendar.HOUR_OF_DAY, hour);
+        }
         if(textView == textViewLeE)
-            lecEndCalendar = calendar;
+        {
+            lecEndCalendar.set(lecEndCalendar.MINUTE, minute);
+            lecEndCalendar.set(lecEndCalendar.HOUR_OF_DAY, hour);
+        }
     }
 }

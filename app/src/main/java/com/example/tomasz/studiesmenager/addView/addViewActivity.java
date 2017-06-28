@@ -23,6 +23,7 @@ import com.example.tomasz.studiesmenager.R;
 import com.example.tomasz.studiesmenager.SubjectsListCardView.SubjectsActivity;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Random;
 
@@ -35,13 +36,13 @@ public class addViewActivity extends AppCompatActivity {
     private Boolean labPressed = false;
     private Boolean tutPressed = false;
     private Boolean lecPressed = false;
-    public static Calendar labStartCalendar;
-    public static Calendar labEndCalendar;
-    public static Calendar tutStartCalendar;
-    public static Calendar prevCalendar;
-    public static Calendar tutEndCalendar;
-    public static Calendar lecStartCalendar;
-    public static Calendar lecEndCalendar;
+    public static  Calendar labStartCalendar = Calendar.getInstance();
+    public static Calendar labEndCalendar = Calendar.getInstance();
+    public static Calendar tutStartCalendar = Calendar.getInstance();
+    public static Calendar prevCalendar = Calendar.getInstance();
+    public static Calendar tutEndCalendar = Calendar.getInstance();
+    public static Calendar lecStartCalendar = Calendar.getInstance();
+    public static Calendar lecEndCalendar = Calendar.getInstance();
 
     @Override
     protected void onCreate( Bundle savedInstanceState) {
@@ -67,7 +68,7 @@ public class addViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                     if(labForm.getVisibility() == View.GONE) {
-                        labButton.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
+                        labButton.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.MULTIPLY);
                         labForm.setVisibility(View.VISIBLE);
                         labPressed = true;
                     }
@@ -83,7 +84,7 @@ public class addViewActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(tutForm.getVisibility() == View.GONE){
                     tutForm.setVisibility(View.VISIBLE);
-                    tutButton.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
+                    tutButton.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.MULTIPLY);
                     tutPressed = true;
                 }
                 else {
@@ -97,7 +98,7 @@ public class addViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(lecForm.getVisibility() == View.GONE) {
-                    lecButton.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
+                    lecButton.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.MULTIPLY);
                     lecForm.setVisibility(View.VISIBLE);
                     lecPressed = true;
                 }
@@ -155,6 +156,7 @@ public class addViewActivity extends AppCompatActivity {
             lab.save();
             for (int i = 0; i < 15 / lab.FreqInWeeks; i++) {
                 Attendence attendence = new Attendence();
+                System.out.println("******************ATTENDANCE " + labStartCalendar.getTime());
                 attendence.Date = labStartCalendar.getTime();
                 attendence.PointsEarned = 0;
                 attendence.WasPresent = false;
@@ -177,8 +179,7 @@ public class addViewActivity extends AppCompatActivity {
                 if(lab.FreqInWeeks == 1) {
                     labStartCalendar.add(Calendar.DAY_OF_YEAR, +7);
                 }
-                else
-                {
+                else {
                     labStartCalendar.add(Calendar.DAY_OF_YEAR, +14);
                 }
             }
@@ -231,8 +232,7 @@ public class addViewActivity extends AppCompatActivity {
                 if(tut.FreqInWeeks == 1) {
                     tutStartCalendar.add(Calendar.DAY_OF_YEAR, +7);
                 }
-                else
-                {
+                else {
                     tutStartCalendar.add(Calendar.DAY_OF_YEAR, +14);
                 }
             }
@@ -263,6 +263,7 @@ public class addViewActivity extends AppCompatActivity {
             for(int i =0;i<15/lec.FreqInWeeks;i++)
             {
                 Attendence attendence = new Attendence();
+                Calendar calendar = Calendar.getInstance();
                 attendence.Date = lecStartCalendar.getTime();
                 System.out.println(attendence.Date);
                 attendence.PointsEarned = 0;
@@ -287,8 +288,7 @@ public class addViewActivity extends AppCompatActivity {
                     lecStartCalendar.add(Calendar.DAY_OF_YEAR, +7);
                     System.out.println(lecStartCalendar.getTime());
                 }
-                else
-                {
+                else {
                     lecStartCalendar.add(Calendar.DAY_OF_YEAR, +14);
                 }
             }
